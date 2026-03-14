@@ -984,6 +984,19 @@ footer a:hover { color: var(--color-primary); }
 /* ========================================================================
    UTILITIES & RESPONSIVE
    ======================================================================== */
+
+/* Screen-reader only — hidden visually but accessible to search engines */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 @media (max-width: 640px) {
   .hero-name { font-size: clamp(2rem, 8vw, 3.5rem); }
   .photo-break { height: 60vh; }
