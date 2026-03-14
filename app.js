@@ -88,7 +88,7 @@
     const GLOW_RADIUS = isMobile ? 18 : 28;
     const CONNECTION_WIDTH_MIN = 0.6;
     const CONNECTION_WIDTH_MAX = 2.2;
-    const PULSE_SPEED = 0.015;
+    const PULSE_SPEED = 0.006;
 
     function resize() {
       width = canvas.width = canvas.offsetWidth;
@@ -167,7 +167,7 @@
         const to = networkNodes[edge.to];
         const lineWidth = CONNECTION_WIDTH_MIN + edge.weight * (CONNECTION_WIDTH_MAX - CONNECTION_WIDTH_MIN);
         const baseAlpha = 0.06 + edge.weight * 0.18;
-        const flowT = (Math.sin(time * edge.flowSpeed * 3 + edge.flowPhase) + 1) / 2;
+        const flowT = ((time * edge.flowSpeed * 0.5 + edge.flowPhase) % 1);
         const flowX = from.x + (to.x - from.x) * flowT;
         const flowY = from.y + (to.y - from.y) * flowT;
 
@@ -232,93 +232,24 @@
     document.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
   }
 
-  // ================================================================
-  // TRANSFORMER ARCHITECTURE — SVG scroll-driven reveal
-  // ================================================================
-  initTransformerAnimation();
-
-  function initTransformerAnimation() {
-    const container = document.getElementById('transformer-vis');
-    if (!container) return;
-
-    const svg = container.querySelector('svg');
-    if (!svg) return;
-
-    const blocks = svg.querySelectorAll('.tf-block');
-    const arrows = svg.querySelectorAll('.tf-arrow');
-    const labels = svg.querySelectorAll('.tf-label');
-    const skipPaths = svg.querySelectorAll('.tf-skip');
-    const flowDots = svg.querySelectorAll('.tf-flow-dot');
-
-    // Initial state: everything hidden
-    gsap.set(blocks, { opacity: 0, scale: 0.85, transformOrigin: 'center center' });
-    gsap.set(arrows, { opacity: 0, scaleY: 0, transformOrigin: 'center top' });
-    gsap.set(labels, { opacity: 0, x: -15 });
-    gsap.set(skipPaths, { opacity: 0 });
-    gsap.set(flowDots, { opacity: 0 });
-
-    // ScrollTrigger timeline — blocks reveal bottom to top as you scroll
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#transformer-section',
-        start: 'top 75%',
-        end: 'bottom 30%',
-        scrub: 0.8,
-      }
-    });
-
-    // Stagger reveal blocks
-    blocks.forEach((block, i) => {
-      tl.to(block, { opacity: 1, scale: 1, duration: 0.4, ease: 'power2.out' }, i * 0.12);
-    });
-
-    // Arrows between blocks
-    arrows.forEach((arrow, i) => {
-      tl.to(arrow, { opacity: 0.7, scaleY: 1, duration: 0.25, ease: 'power2.out' }, 0.06 + i * 0.12);
-    });
-
-    // Labels
-    labels.forEach((label, i) => {
-      tl.to(label, { opacity: 1, x: 0, duration: 0.3, ease: 'power2.out' }, 0.08 + i * 0.12);
-    });
-
-    // Skip connections (residual arrows)
-    skipPaths.forEach((p, i) => {
-      tl.to(p, { opacity: 0.5, duration: 0.4 }, 0.2 + i * 0.15);
-    });
-
-    // Flow dots continuous animation after reveal
-    ScrollTrigger.create({
-      trigger: '#transformer-section',
-      start: 'top 50%',
-      onEnter: () => {
-        flowDots.forEach((dot, i) => {
-          gsap.to(dot, {
-            opacity: 0.8,
-            duration: 0.5,
-            delay: i * 0.2,
-            onComplete: () => {
-              // Pulse animation
-              gsap.to(dot, {
-                opacity: 0.3,
-                duration: 1.5,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
-              });
-            }
-          });
-        });
-      },
-      once: true
-    });
-  }
-
   // ---- Splitting.js — character reveal ----
   if (typeof Splitting !== 'undefined') {
     Splitting();
     document.querySelectorAll('.hero-name .char').forEach((c, i) => {
       c.style.animationDelay = (i * 40 + 400) + 'ms';
+    });
+  }
+
+  // ---- Hero transformer BG — soft fade-in on load ----
+  const heroTfBg = document.querySelector('.hero-transformer-bg');
+  if (heroTfBg) {
+    gsap.fromTo(heroTfBg,
+      { opacity: 0, x: 40 },
+      { opacity: 0.12, x: 0, duration: 2.5, delay: 1.2, ease: 'power2.out' }
+    );
+    // Gentle floating animation
+    gsap.to(heroTfBg, {
+      y: -12, duration: 6, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 3.7
     });
   }
 
