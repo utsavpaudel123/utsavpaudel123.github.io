@@ -240,19 +240,6 @@
     });
   }
 
-  // ---- Hero transformer BG — soft fade-in on load ----
-  const heroTfBg = document.querySelector('.hero-transformer-bg');
-  if (heroTfBg) {
-    gsap.fromTo(heroTfBg,
-      { opacity: 0, x: 40 },
-      { opacity: 0.12, x: 0, duration: 2.5, delay: 1.2, ease: 'power2.out' }
-    );
-    // Gentle floating animation
-    gsap.to(heroTfBg, {
-      y: -12, duration: 6, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 3.7
-    });
-  }
-
   // ---- Photo Parallax ----
   document.querySelectorAll('.photo-break').forEach(section => {
     const img = section.querySelector('img');

@@ -267,25 +267,6 @@
   opacity: 0.45;
 }
 
-/* Transformer SVG — subtle background element in hero */
-.hero-transformer-bg {
-  position: absolute;
-  right: 3%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: clamp(220px, 28vw, 380px);
-  height: auto;
-  z-index: 1;
-  opacity: 0.12;
-  pointer-events: none;
-  filter: blur(0.5px);
-}
-
-.hero-transformer-bg svg {
-  width: 100%;
-  height: auto;
-}
-
 .hero-content {
   position: relative;
   z-index: 2;
@@ -689,8 +670,6 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Transformer section removed — SVG now lives in hero background */
-
 /* ========================================================================
    PROJECTS — Apple-style scroll-pinned showcase
    ======================================================================== */
@@ -1005,10 +984,6 @@ footer a:hover { color: var(--color-primary); }
 /* ========================================================================
    UTILITIES & RESPONSIVE
    ======================================================================== */
-@media (max-width: 768px) {
-  .hero-transformer-bg { display: none; }
-}
-
 @media (max-width: 640px) {
   .hero-name { font-size: clamp(2rem, 8vw, 3.5rem); }
   .photo-break { height: 60vh; }
