@@ -207,6 +207,106 @@
 </section>
 
 <!-- ================================================================
+     TRANSFORMER ARCHITECTURE — Scroll-driven reveal
+     ================================================================ -->
+<section class="transformer-section" id="transformer-section">
+  <div class="transformer-inner">
+    <div class="transformer-text">
+      <p class="section-label">The Architecture</p>
+      <h2 class="section-heading">How Transformers think.</h2>
+      <p class="transformer-desc">The backbone of modern AI — from GPT to BERT. I build production systems on this foundation every day.</p>
+    </div>
+    <div class="transformer-vis" id="transformer-vis">
+      <svg viewBox="0 0 380 720" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Transformer Architecture Diagram">
+        <!-- Input Embedding -->
+        <rect class="tf-block" x="90" y="640" width="200" height="50" rx="8" stroke="var(--color-primary)" stroke-width="1.5" fill="var(--color-surface)" />
+        <text class="tf-label" x="190" y="670" text-anchor="middle" fill="var(--color-text)" font-family="var(--font-mono)" font-size="12">Input Embedding</text>
+
+        <!-- Positional Encoding -->
+        <rect class="tf-block" x="90" y="565" width="200" height="50" rx="8" stroke="var(--color-accent)" stroke-width="1.5" fill="var(--color-surface)" />
+        <text class="tf-label" x="190" y="595" text-anchor="middle" fill="var(--color-text)" font-family="var(--font-mono)" font-size="12">+ Positional Encoding</text>
+
+        <!-- Arrow 1 -->
+        <line class="tf-arrow" x1="190" y1="640" x2="190" y2="615" stroke="var(--color-primary)" stroke-width="1.5" marker-end="url(#arrowhead)" />
+
+        <!-- Multi-Head Attention -->
+        <rect class="tf-block" x="65" y="475" width="250" height="60" rx="10" stroke="var(--color-primary)" stroke-width="2" fill="var(--color-surface-2)" />
+        <text class="tf-label" x="190" y="502" text-anchor="middle" fill="var(--color-primary)" font-family="var(--font-mono)" font-size="13" font-weight="600">Multi-Head Attention</text>
+        <text class="tf-label" x="190" y="520" text-anchor="middle" fill="var(--color-text-muted)" font-family="var(--font-mono)" font-size="10">Q &middot; K &middot; V</text>
+
+        <!-- Arrow 2 -->
+        <line class="tf-arrow" x1="190" y1="565" x2="190" y2="535" stroke="var(--color-primary)" stroke-width="1.5" marker-end="url(#arrowhead)" />
+
+        <!-- Add & Norm 1 -->
+        <rect class="tf-block" x="90" y="400" width="200" height="45" rx="8" stroke="var(--color-accent)" stroke-width="1.5" fill="var(--color-surface)" />
+        <text class="tf-label" x="190" y="427" text-anchor="middle" fill="var(--color-accent)" font-family="var(--font-mono)" font-size="12">Add & Norm</text>
+
+        <!-- Arrow 3 -->
+        <line class="tf-arrow" x1="190" y1="475" x2="190" y2="445" stroke="var(--color-primary)" stroke-width="1.5" marker-end="url(#arrowhead)" />
+
+        <!-- Skip connection 1 (residual) -->
+        <path class="tf-skip" d="M 65 590 Q 30 590 30 500 Q 30 422 90 422" stroke="var(--color-accent)" stroke-width="1" stroke-dasharray="4 4" fill="none" marker-end="url(#arrowhead-accent)" />
+
+        <!-- Feed Forward -->
+        <rect class="tf-block" x="65" y="310" width="250" height="60" rx="10" stroke="var(--color-primary)" stroke-width="2" fill="var(--color-surface-2)" />
+        <text class="tf-label" x="190" y="337" text-anchor="middle" fill="var(--color-primary)" font-family="var(--font-mono)" font-size="13" font-weight="600">Feed Forward</text>
+        <text class="tf-label" x="190" y="355" text-anchor="middle" fill="var(--color-text-muted)" font-family="var(--font-mono)" font-size="10">Linear &rarr; ReLU &rarr; Linear</text>
+
+        <!-- Arrow 4 -->
+        <line class="tf-arrow" x1="190" y1="400" x2="190" y2="370" stroke="var(--color-primary)" stroke-width="1.5" marker-end="url(#arrowhead)" />
+
+        <!-- Add & Norm 2 -->
+        <rect class="tf-block" x="90" y="235" width="200" height="45" rx="8" stroke="var(--color-accent)" stroke-width="1.5" fill="var(--color-surface)" />
+        <text class="tf-label" x="190" y="262" text-anchor="middle" fill="var(--color-accent)" font-family="var(--font-mono)" font-size="12">Add & Norm</text>
+
+        <!-- Arrow 5 -->
+        <line class="tf-arrow" x1="190" y1="310" x2="190" y2="280" stroke="var(--color-primary)" stroke-width="1.5" marker-end="url(#arrowhead)" />
+
+        <!-- Skip connection 2 (residual) -->
+        <path class="tf-skip" d="M 65 422 Q 20 422 20 335 Q 20 257 90 257" stroke="var(--color-accent)" stroke-width="1" stroke-dasharray="4 4" fill="none" marker-end="url(#arrowhead-accent)" />
+
+        <!-- Linear + Softmax -->
+        <rect class="tf-block" x="90" y="155" width="200" height="50" rx="8" stroke="var(--color-primary)" stroke-width="1.5" fill="var(--color-surface)" />
+        <text class="tf-label" x="190" y="185" text-anchor="middle" fill="var(--color-text)" font-family="var(--font-mono)" font-size="12">Linear + Softmax</text>
+
+        <!-- Arrow 6 -->
+        <line class="tf-arrow" x1="190" y1="235" x2="190" y2="205" stroke="var(--color-primary)" stroke-width="1.5" marker-end="url(#arrowhead)" />
+
+        <!-- Output -->
+        <rect class="tf-block" x="90" y="75" width="200" height="50" rx="8" stroke="var(--color-primary)" stroke-width="2" fill="var(--color-primary-dim)" />
+        <text class="tf-label" x="190" y="105" text-anchor="middle" fill="var(--color-primary)" font-family="var(--font-mono)" font-size="13" font-weight="600">Output Probabilities</text>
+
+        <!-- Arrow 7 -->
+        <line class="tf-arrow" x1="190" y1="155" x2="190" y2="125" stroke="var(--color-primary)" stroke-width="1.5" marker-end="url(#arrowhead)" />
+
+        <!-- Nx repeat bracket -->
+        <text class="tf-label" x="340" y="395" fill="var(--color-text-muted)" font-family="var(--font-mono)" font-size="11" transform="rotate(-90, 340, 395)">&times;N layers</text>
+        <line class="tf-skip" x1="330" y1="290" x2="330" y2="510" stroke="var(--color-text-faint)" stroke-width="1" stroke-dasharray="3 3" />
+
+        <!-- Data flow dots (pulsing indicators) -->
+        <circle class="tf-flow-dot" cx="190" cy="630" r="3" fill="var(--color-primary)" />
+        <circle class="tf-flow-dot" cx="190" cy="555" r="3" fill="var(--color-primary)" />
+        <circle class="tf-flow-dot" cx="190" cy="465" r="3" fill="var(--color-primary)" />
+        <circle class="tf-flow-dot" cx="190" cy="390" r="3" fill="var(--color-primary)" />
+        <circle class="tf-flow-dot" cx="190" cy="300" r="3" fill="var(--color-primary)" />
+        <circle class="tf-flow-dot" cx="190" cy="225" r="3" fill="var(--color-primary)" />
+        <circle class="tf-flow-dot" cx="190" cy="145" r="3" fill="var(--color-primary)" />
+
+        <!-- Arrow marker defs -->
+        <defs>
+          <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="var(--color-primary)" />
+          </marker>
+          <marker id="arrowhead-accent" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="var(--color-accent)" />
+          </marker>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
      PROJECTS — Apple-style pinned showcase
      ================================================================ -->
 <section class="projects" id="projects">
@@ -389,9 +489,6 @@
      ================================================================ -->
 <footer>
   <p>&copy; 2025 Utsav Paudel &middot; Koteshwor, Kathmandu, Nepal</p>
-  <p style="margin-top:0.5rem">
-    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
-  </p>
 </footer>
 
 <!-- ================================================================

@@ -67,94 +67,250 @@
     }
   });
 
-  // ---- Neural Network Canvas ----
+  // ================================================================
+  // HERO — Structured Neural Network Canvas
+  // ================================================================
   initNeuralCanvas();
 
   function initNeuralCanvas() {
     const canvas = document.getElementById('neural-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    let width, height, nodes = [], mouse = { x: -1000, y: -1000 };
-    const NODE_COUNT = window.innerWidth < 768 ? 40 : 80;
-    const CONNECTION_DIST = 150;
+    let width, height;
+    let networkNodes = [];
+    let networkEdges = [];
+    let mouse = { x: -9999, y: -9999 };
+    let time = 0;
+
+    const isMobile = window.innerWidth < 768;
+    const LAYERS = isMobile ? [3, 5, 6, 5, 3] : [4, 7, 10, 10, 7, 4];
+    const NODE_RADIUS = isMobile ? 5 : 7;
+    const GLOW_RADIUS = isMobile ? 18 : 28;
+    const CONNECTION_WIDTH_MIN = 0.6;
+    const CONNECTION_WIDTH_MAX = 2.2;
+    const PULSE_SPEED = 0.015;
 
     function resize() {
       width = canvas.width = canvas.offsetWidth;
       height = canvas.height = canvas.offsetHeight;
+      buildNetwork();
     }
 
-    function createNodes() {
-      nodes = [];
-      for (let i = 0; i < NODE_COUNT; i++) {
-        nodes.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
-          r: Math.random() * 2 + 1
-        });
+    function buildNetwork() {
+      networkNodes = [];
+      networkEdges = [];
+
+      const numLayers = LAYERS.length;
+      const layerSpacing = width / (numLayers + 1);
+      const verticalPadding = height * 0.15;
+      const usableHeight = height - verticalPadding * 2;
+
+      for (let l = 0; l < numLayers; l++) {
+        const nodesInLayer = LAYERS[l];
+        const x = layerSpacing * (l + 1);
+        const nodeSpacing = usableHeight / (nodesInLayer + 1);
+
+        for (let n = 0; n < nodesInLayer; n++) {
+          const y = verticalPadding + nodeSpacing * (n + 1);
+          networkNodes.push({
+            x: x, y: y, baseX: x, baseY: y,
+            layer: l, index: n, radius: NODE_RADIUS,
+            phase: Math.random() * Math.PI * 2,
+            pulseSpeed: 0.5 + Math.random() * 1.5,
+            activation: 0.3 + Math.random() * 0.7
+          });
+        }
+      }
+
+      for (let i = 0; i < networkNodes.length; i++) {
+        for (let j = 0; j < networkNodes.length; j++) {
+          if (networkNodes[j].layer === networkNodes[i].layer + 1) {
+            const weight = 0.1 + Math.random() * 0.9;
+            if (weight > 0.25) {
+              networkEdges.push({
+                from: i, to: j, weight: weight,
+                flowPhase: Math.random() * Math.PI * 2,
+                flowSpeed: 0.3 + Math.random() * 0.7
+              });
+            }
+          }
+        }
       }
     }
 
     function draw() {
+      time += PULSE_SPEED;
       ctx.clearRect(0, 0, width, height);
 
       const isDark = html.getAttribute('data-theme') !== 'light';
-      const nodeColor = isDark ? 'rgba(0, 212, 255, 0.6)' : 'rgba(8, 145, 178, 0.5)';
-      const lineColor = isDark ? 'rgba(0, 212, 255, ' : 'rgba(8, 145, 178, ';
+      const primaryR = isDark ? 0 : 8;
+      const primaryG = isDark ? 212 : 145;
+      const primaryB = isDark ? 255 : 178;
+      const accentR = isDark ? 245 : 217;
+      const accentG = isDark ? 158 : 119;
+      const accentB = isDark ? 11 : 6;
 
-      // Update + draw nodes
-      for (let i = 0; i < nodes.length; i++) {
-        const n = nodes[i];
-        n.x += n.vx;
-        n.y += n.vy;
-        if (n.x < 0 || n.x > width) n.vx *= -1;
-        if (n.y < 0 || n.y > height) n.vy *= -1;
-
-        // Mouse repel
-        const dx = n.x - mouse.x;
-        const dy = n.y - mouse.y;
+      for (let i = 0; i < networkNodes.length; i++) {
+        const node = networkNodes[i];
+        const dx = mouse.x - node.baseX;
+        const dy = mouse.y - node.baseY;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 200) {
-          n.x += dx * 0.01;
-          n.y += dy * 0.01;
-        }
+        const influence = Math.max(0, 1 - dist / 250);
+        node.x = node.baseX + Math.sin(time * node.pulseSpeed + node.phase) * 3 - dx * influence * 0.05;
+        node.y = node.baseY + Math.cos(time * node.pulseSpeed * 0.7 + node.phase) * 3 - dy * influence * 0.05;
+      }
+
+      // Draw edges
+      for (let e = 0; e < networkEdges.length; e++) {
+        const edge = networkEdges[e];
+        const from = networkNodes[edge.from];
+        const to = networkNodes[edge.to];
+        const lineWidth = CONNECTION_WIDTH_MIN + edge.weight * (CONNECTION_WIDTH_MAX - CONNECTION_WIDTH_MIN);
+        const baseAlpha = 0.06 + edge.weight * 0.18;
+        const flowT = (Math.sin(time * edge.flowSpeed * 3 + edge.flowPhase) + 1) / 2;
+        const flowX = from.x + (to.x - from.x) * flowT;
+        const flowY = from.y + (to.y - from.y) * flowT;
 
         ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fillStyle = nodeColor;
+        ctx.moveTo(from.x, from.y);
+        ctx.lineTo(to.x, to.y);
+        ctx.strokeStyle = 'rgba(' + primaryR + ',' + primaryG + ',' + primaryB + ',' + baseAlpha + ')';
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+
+        if (edge.weight > 0.5) {
+          const flowGrad = ctx.createRadialGradient(flowX, flowY, 0, flowX, flowY, 20);
+          flowGrad.addColorStop(0, 'rgba(' + primaryR + ',' + primaryG + ',' + primaryB + ',' + (0.3 * edge.weight) + ')');
+          flowGrad.addColorStop(1, 'rgba(' + primaryR + ',' + primaryG + ',' + primaryB + ',0)');
+          ctx.beginPath();
+          ctx.arc(flowX, flowY, 20, 0, Math.PI * 2);
+          ctx.fillStyle = flowGrad;
+          ctx.fill();
+        }
+      }
+
+      // Draw nodes
+      for (let i = 0; i < networkNodes.length; i++) {
+        const node = networkNodes[i];
+        const pulseAlpha = 0.5 + Math.sin(time * node.pulseSpeed + node.phase) * 0.3;
+        const isInput = node.layer === 0;
+        const isOutput = node.layer === LAYERS.length - 1;
+        let nr, ng, nb;
+        if (isInput || isOutput) { nr = accentR; ng = accentG; nb = accentB; }
+        else { nr = primaryR; ng = primaryG; nb = primaryB; }
+
+        const glowGrad = ctx.createRadialGradient(node.x, node.y, node.radius, node.x, node.y, GLOW_RADIUS);
+        glowGrad.addColorStop(0, 'rgba(' + nr + ',' + ng + ',' + nb + ',' + (0.25 * pulseAlpha * node.activation) + ')');
+        glowGrad.addColorStop(1, 'rgba(' + nr + ',' + ng + ',' + nb + ',0)');
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, GLOW_RADIUS, 0, Math.PI * 2);
+        ctx.fillStyle = glowGrad;
         ctx.fill();
 
-        // Connections
-        for (let j = i + 1; j < nodes.length; j++) {
-          const m = nodes[j];
-          const ddx = n.x - m.x;
-          const ddy = n.y - m.y;
-          const d = Math.sqrt(ddx * ddx + ddy * ddy);
-          if (d < CONNECTION_DIST) {
-            const alpha = (1 - d / CONNECTION_DIST) * 0.15;
-            ctx.beginPath();
-            ctx.moveTo(n.x, n.y);
-            ctx.lineTo(m.x, m.y);
-            ctx.strokeStyle = lineColor + alpha + ')';
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + nr + ',' + ng + ',' + nb + ',' + (0.7 + pulseAlpha * 0.3) + ')';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius * 0.4, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,255,255,' + (0.5 + pulseAlpha * 0.4) + ')';
+        ctx.fill();
       }
 
       requestAnimationFrame(draw);
     }
 
     resize();
-    createNodes();
     draw();
-
-    window.addEventListener('resize', () => { resize(); createNodes(); });
+    window.addEventListener('resize', resize);
     document.addEventListener('mousemove', (e) => {
       const rect = canvas.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
+    });
+    document.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+  }
+
+  // ================================================================
+  // TRANSFORMER ARCHITECTURE — SVG scroll-driven reveal
+  // ================================================================
+  initTransformerAnimation();
+
+  function initTransformerAnimation() {
+    const container = document.getElementById('transformer-vis');
+    if (!container) return;
+
+    const svg = container.querySelector('svg');
+    if (!svg) return;
+
+    const blocks = svg.querySelectorAll('.tf-block');
+    const arrows = svg.querySelectorAll('.tf-arrow');
+    const labels = svg.querySelectorAll('.tf-label');
+    const skipPaths = svg.querySelectorAll('.tf-skip');
+    const flowDots = svg.querySelectorAll('.tf-flow-dot');
+
+    // Initial state: everything hidden
+    gsap.set(blocks, { opacity: 0, scale: 0.85, transformOrigin: 'center center' });
+    gsap.set(arrows, { opacity: 0, scaleY: 0, transformOrigin: 'center top' });
+    gsap.set(labels, { opacity: 0, x: -15 });
+    gsap.set(skipPaths, { opacity: 0 });
+    gsap.set(flowDots, { opacity: 0 });
+
+    // ScrollTrigger timeline — blocks reveal bottom to top as you scroll
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#transformer-section',
+        start: 'top 75%',
+        end: 'bottom 30%',
+        scrub: 0.8,
+      }
+    });
+
+    // Stagger reveal blocks
+    blocks.forEach((block, i) => {
+      tl.to(block, { opacity: 1, scale: 1, duration: 0.4, ease: 'power2.out' }, i * 0.12);
+    });
+
+    // Arrows between blocks
+    arrows.forEach((arrow, i) => {
+      tl.to(arrow, { opacity: 0.7, scaleY: 1, duration: 0.25, ease: 'power2.out' }, 0.06 + i * 0.12);
+    });
+
+    // Labels
+    labels.forEach((label, i) => {
+      tl.to(label, { opacity: 1, x: 0, duration: 0.3, ease: 'power2.out' }, 0.08 + i * 0.12);
+    });
+
+    // Skip connections (residual arrows)
+    skipPaths.forEach((p, i) => {
+      tl.to(p, { opacity: 0.5, duration: 0.4 }, 0.2 + i * 0.15);
+    });
+
+    // Flow dots continuous animation after reveal
+    ScrollTrigger.create({
+      trigger: '#transformer-section',
+      start: 'top 50%',
+      onEnter: () => {
+        flowDots.forEach((dot, i) => {
+          gsap.to(dot, {
+            opacity: 0.8,
+            duration: 0.5,
+            delay: i * 0.2,
+            onComplete: () => {
+              // Pulse animation
+              gsap.to(dot, {
+                opacity: 0.3,
+                duration: 1.5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+              });
+            }
+          });
+        });
+      },
+      once: true
     });
   }
 
@@ -174,26 +330,14 @@
     gsap.to(img, {
       yPercent: -10,
       ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true
-      }
+      scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: true }
     });
 
     if (caption) {
       gsap.fromTo(caption,
         { opacity: 0, y: 40 },
-        {
-          opacity: 1, y: 0,
-          duration: 1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 60%',
-            toggleActions: 'play none none reverse'
-          }
+        { opacity: 1, y: 0, duration: 1, ease: 'power2.out',
+          scrollTrigger: { trigger: section, start: 'top 60%', toggleActions: 'play none none reverse' }
         }
       );
     }
@@ -202,18 +346,11 @@
   // ---- About Section Animations ----
   const aboutDesc = document.querySelector('.about-description');
   if (aboutDesc) {
-    gsap.to(aboutDesc, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: aboutDesc,
-        start: 'top 80%',
-        toggleActions: 'play none none reverse'
-      }
-    });
     gsap.set(aboutDesc, { y: 30 });
+    gsap.to(aboutDesc, {
+      opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+      scrollTrigger: { trigger: aboutDesc, start: 'top 80%', toggleActions: 'play none none reverse' }
+    });
   }
 
   // Stats counter animation
@@ -223,36 +360,18 @@
     const isDecimal = target % 1 !== 0;
 
     gsap.to(stat, {
-      opacity: 1,
-      duration: 0.6,
-      delay: i * 0.15,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: stat,
-        start: 'top 85%',
-        toggleActions: 'play none none reverse'
-      }
+      opacity: 1, duration: 0.6, delay: i * 0.15, ease: 'power2.out',
+      scrollTrigger: { trigger: stat, start: 'top 85%', toggleActions: 'play none none reverse' }
     });
 
     const counter = { val: 0 };
     gsap.to(counter, {
-      val: target,
-      duration: 1.5,
-      delay: i * 0.15,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: stat,
-        start: 'top 85%',
-        toggleActions: 'play none none reverse'
-      },
+      val: target, duration: 1.5, delay: i * 0.15, ease: 'power2.out',
+      scrollTrigger: { trigger: stat, start: 'top 85%', toggleActions: 'play none none reverse' },
       onUpdate: () => {
-        if (isDecimal) {
-          numEl.textContent = counter.val.toFixed(1) + '+';
-        } else if (target >= 1000) {
-          numEl.textContent = Math.floor(counter.val).toLocaleString() + '+';
-        } else {
-          numEl.textContent = Math.floor(counter.val);
-        }
+        if (isDecimal) numEl.textContent = counter.val.toFixed(1) + '+';
+        else if (target >= 1000) numEl.textContent = Math.floor(counter.val).toLocaleString() + '+';
+        else numEl.textContent = Math.floor(counter.val);
       }
     });
   });
@@ -263,38 +382,20 @@
 
   if (timelineFill) {
     gsap.to(timelineFill, {
-      height: '100%',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.timeline',
-        start: 'top 80%',
-        end: 'bottom 20%',
-        scrub: true
-      }
+      height: '100%', ease: 'none',
+      scrollTrigger: { trigger: '.timeline', start: 'top 80%', end: 'bottom 20%', scrub: true }
     });
   }
 
-  timelineItems.forEach((item, i) => {
+  timelineItems.forEach((item) => {
     gsap.fromTo(item,
       { opacity: 0, x: -30 },
-      {
-        opacity: 1,
-        x: 0,
-        duration: 0.7,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: item,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse'
-        }
+      { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out',
+        scrollTrigger: { trigger: item, start: 'top 80%', toggleActions: 'play none none reverse' }
       }
     );
-
-    // Active state
     ScrollTrigger.create({
-      trigger: item,
-      start: 'top 50%',
-      end: 'bottom 50%',
+      trigger: item, start: 'top 50%', end: 'bottom 50%',
       onEnter: () => item.classList.add('active'),
       onLeave: () => item.classList.remove('active'),
       onEnterBack: () => item.classList.add('active'),
@@ -302,7 +403,10 @@
     });
   });
 
-  // ---- Projects — Apple-style pinned showcase ----
+  // ================================================================
+  // PROJECTS — Apple-style pinned showcase (FIXED)
+  // Each project gets its own scroll segment with hold time
+  // ================================================================
   const slides = document.querySelectorAll('.project-slide');
   const dots = document.querySelectorAll('.project-dot');
   const showcasePin = document.getElementById('project-showcase-pin');
@@ -310,52 +414,71 @@
 
   if (slides.length > 1 && showcase && showcasePin) {
     const totalSlides = slides.length;
+    // Each slide gets 1 unit of hold + transitions between them
+    // Total timeline length = totalSlides (one segment per slide)
+    // Transitions happen in the gaps between segments
+
+    // Explicitly set initial opacities
+    gsap.set(slides[0], { opacity: 1 });
+    for (let i = 1; i < totalSlides; i++) {
+      gsap.set(slides[i], { opacity: 0 });
+    }
+
+    const scrollLength = (totalSlides + 1) * 100; // extra 100vh for first slide hold
 
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: showcase,
         start: 'top top',
-        end: () => '+=' + (totalSlides * 100) + '%',
+        end: '+=' + scrollLength + '%',
         pin: showcasePin,
-        scrub: 1,
+        scrub: 0.5,
         snap: {
-          snapTo: 1 / (totalSlides - 1),
-          duration: { min: 0.2, max: 0.6 },
-          delay: 0.1,
+          snapTo: function(value) {
+            // Snap points: one per slide, evenly spaced
+            var step = 1 / totalSlides;
+            return Math.round(value / step) * step;
+          },
+          duration: { min: 0.15, max: 0.4 },
+          delay: 0.05,
           ease: 'power1.inOut'
         }
       }
     });
 
-    // Build timeline — fade between slides
-    slides.forEach((slide, i) => {
-      if (i === 0) {
-        // First slide is already visible
-        if (i < totalSlides - 1) {
-          tl.to(slide, { opacity: 0, duration: 0.5 }, i);
-          tl.fromTo(slides[i + 1], { opacity: 0 }, { opacity: 1, duration: 0.5 }, i);
-        }
-      } else if (i < totalSlides - 1) {
-        tl.to(slide, { opacity: 0, duration: 0.5 }, i);
-        tl.fromTo(slides[i + 1], { opacity: 0 }, { opacity: 1, duration: 0.5 }, i);
-      }
-    });
+    // Timeline structure:
+    // 0.0 → 1.0: Slide 0 visible (hold), then fade out at end
+    // 1.0 → 2.0: Slide 1 visible (hold), then fade out at end
+    // 2.0 → 3.0: Slide 2 visible (hold), then fade out at end
+    // 3.0 → 4.0: Slide 3 visible (hold)
+    // 
+    // Transitions happen in the last 0.3 of each segment
 
-    // Update dots
+    // First, ensure slide 0 stays at opacity 1 from 0 to 0.7
+    tl.set(slides[0], { opacity: 1 }, 0);
+
+    for (let i = 0; i < totalSlides - 1; i++) {
+      var segStart = i + 0.7;
+      // Fade out current slide
+      tl.fromTo(slides[i], { opacity: 1 }, { opacity: 0, duration: 0.3, ease: 'power1.inOut' }, segStart);
+      // Fade in next slide
+      tl.fromTo(slides[i + 1], { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power1.inOut' }, segStart);
+    }
+
+    // Update dots based on scroll progress
     ScrollTrigger.create({
       trigger: showcase,
       start: 'top top',
-      end: () => '+=' + (totalSlides * 100) + '%',
+      end: '+=' + scrollLength + '%',
       scrub: true,
       onUpdate: (self) => {
-        const idx = Math.round(self.progress * (totalSlides - 1));
-        dots.forEach((d, di) => {
-          d.classList.toggle('active', di === idx);
-        });
+        const segmentProgress = self.progress * totalSlides;
+        const idx = Math.min(Math.floor(segmentProgress), totalSlides - 1);
+        dots.forEach((d, di) => d.classList.toggle('active', di === idx));
       }
     });
 
-    // Animate project metric numbers when they become visible
+    // Animate project metric numbers
     slides.forEach(slide => {
       const metricNum = slide.querySelector('.project-metric-number');
       if (metricNum) {
@@ -365,15 +488,14 @@
         ScrollTrigger.create({
           trigger: showcase,
           start: 'top top',
-          end: () => '+=' + (totalSlides * 100) + '%',
+          end: '+=' + scrollLength + '%',
           onUpdate: () => {
-            if (parseFloat(getComputedStyle(slide).opacity) > 0.5 && !animated) {
+            const op = parseFloat(getComputedStyle(slide).opacity);
+            if (op > 0.5 && !animated) {
               animated = true;
               const counter = { val: 0 };
               gsap.to(counter, {
-                val: target,
-                duration: 1,
-                ease: 'power2.out',
+                val: target, duration: 1, ease: 'power2.out',
                 onUpdate: () => {
                   metricNum.textContent = target >= 1000
                     ? Math.floor(counter.val).toLocaleString() + '+'
@@ -381,7 +503,7 @@
                 }
               });
             }
-            if (parseFloat(getComputedStyle(slide).opacity) < 0.3) {
+            if (op < 0.3) {
               animated = false;
               metricNum.textContent = '0';
             }
@@ -395,17 +517,8 @@
   document.querySelectorAll('.skill-category').forEach((cat, i) => {
     gsap.fromTo(cat,
       { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        delay: i * 0.08,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: cat,
-          start: 'top 85%',
-          toggleActions: 'play none none reverse'
-        }
+      { opacity: 1, y: 0, duration: 0.6, delay: i * 0.08, ease: 'power2.out',
+        scrollTrigger: { trigger: cat, start: 'top 85%', toggleActions: 'play none none reverse' }
       }
     );
   });
@@ -413,8 +526,7 @@
   // ---- Contact reveal ----
   gsap.fromTo('.contact-heading',
     { opacity: 0, y: 30 },
-    {
-      opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+    { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
       scrollTrigger: { trigger: '.contact', start: 'top 70%', toggleActions: 'play none none reverse' }
     }
   );

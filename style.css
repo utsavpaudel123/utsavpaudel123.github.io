@@ -669,6 +669,63 @@
 }
 
 /* ========================================================================
+   TRANSFORMER ARCHITECTURE — Scroll-driven reveal
+   ======================================================================== */
+.transformer-section {
+  padding: clamp(var(--space-12), 8vw, var(--space-32)) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.transformer-inner {
+  max-width: var(--content-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.transformer-text {
+  max-width: 480px;
+}
+
+.transformer-desc {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-top: var(--space-4);
+}
+
+.transformer-vis {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.transformer-vis svg {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .transformer-inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  .transformer-text {
+    text-align: center;
+    max-width: 100%;
+  }
+  .transformer-vis svg {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
+
+/* ========================================================================
    PROJECTS — Apple-style scroll-pinned showcase
    ======================================================================== */
 .projects {
