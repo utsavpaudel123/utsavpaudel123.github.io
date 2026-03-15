@@ -9,6 +9,12 @@
   // ---- Register GSAP plugins ----
   gsap.registerPlugin(ScrollTrigger);
 
+  // ---- Prefers Reduced Motion ----
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) {
+    gsap.globalTimeline.timeScale(100);
+  }
+
   // ---- Theme Toggle ----
   const html = document.documentElement;
   let currentTheme = 'dark';
@@ -138,7 +144,21 @@
       }
     }
 
+    let canvasVisible = true;
+    if (!prefersReduced) {
+      ScrollTrigger.create({
+        trigger: '#hero',
+        start: 'top bottom',
+        end: 'bottom top',
+        onEnter: () => { canvasVisible = true; draw(); },
+        onLeave: () => { canvasVisible = false; },
+        onEnterBack: () => { canvasVisible = true; draw(); },
+        onLeaveBack: () => { canvasVisible = false; }
+      });
+    }
+
     function draw() {
+      if (!canvasVisible && !prefersReduced) return;
       time += PULSE_SPEED;
       ctx.clearRect(0, 0, width, height);
 
@@ -218,7 +238,9 @@
         ctx.fill();
       }
 
-      requestAnimationFrame(draw);
+      if (!prefersReduced) {
+        requestAnimationFrame(draw);
+      }
     }
 
     resize();
@@ -285,7 +307,7 @@
     const counter = { val: 0 };
     gsap.to(counter, {
       val: target, duration: 1.5, delay: i * 0.15, ease: 'power2.out',
-      scrollTrigger: { trigger: stat, start: 'top 85%', toggleActions: 'play none none reverse' },
+      scrollTrigger: { trigger: stat, start: 'top 85%', toggleActions: 'play none none none' },
       onUpdate: () => {
         if (isDecimal) numEl.textContent = counter.val.toFixed(1) + '+';
         else if (target >= 1000) numEl.textContent = Math.floor(counter.val).toLocaleString() + '+';
@@ -373,15 +395,27 @@
     // Transitions happen in the last 0.3 of each segment
 
     // First, ensure slide 0 stays at opacity 1 from 0 to 0.7
-    tl.set(slides[0], { opacity: 1 }, 0);
+    tl.set(slides[0], { opacity: 1, visibility: 'visible' }, 0);
 
     for (let i = 0; i < totalSlides - 1; i++) {
       var segStart = i + 0.7;
       // Fade out current slide
-      tl.fromTo(slides[i], { opacity: 1 }, { opacity: 0, duration: 0.3, ease: 'power1.inOut' }, segStart);
+      tl.fromTo(slides[i], 
+        { opacity: 1, scale: 1, y: 0 }, 
+        { opacity: 0, scale: 0.95, y: -30, visibility: 'hidden', duration: 0.3, ease: 'power2.inOut' }, 
+        segStart
+      );
       // Fade in next slide
-      tl.fromTo(slides[i + 1], { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power1.inOut' }, segStart);
+      tl.fromTo(slides[i + 1], 
+        { opacity: 0, scale: 0.95, y: 30, visibility: 'visible' }, 
+        { opacity: 1, scale: 1, y: 0, duration: 0.3, ease: 'power2.inOut' }, 
+        segStart
+      );
     }
+
+    // Update dots based on scroll progress
+    // Track active slide index to trigger metric animations without layout thrashing
+    let lastActiveIdx = -1;
 
     // Update dots based on scroll progress
     ScrollTrigger.create({
@@ -393,40 +427,31 @@
         const segmentProgress = self.progress * totalSlides;
         const idx = Math.min(Math.floor(segmentProgress), totalSlides - 1);
         dots.forEach((d, di) => d.classList.toggle('active', di === idx));
-      }
-    });
 
-    // Animate project metric numbers
-    slides.forEach(slide => {
-      const metricNum = slide.querySelector('.project-metric-number');
-      if (metricNum) {
-        const target = parseFloat(metricNum.dataset.count);
-        let animated = false;
-
-        ScrollTrigger.create({
-          trigger: showcase,
-          start: 'top top',
-          end: '+=' + scrollLength + '%',
-          onUpdate: () => {
-            const op = parseFloat(getComputedStyle(slide).opacity);
-            if (op > 0.5 && !animated) {
-              animated = true;
-              const counter = { val: 0 };
-              gsap.to(counter, {
-                val: target, duration: 1, ease: 'power2.out',
-                onUpdate: () => {
-                  metricNum.textContent = target >= 1000
-                    ? Math.floor(counter.val).toLocaleString() + '+'
-                    : Math.floor(counter.val);
-                }
-              });
-            }
-            if (op < 0.3) {
-              animated = false;
-              metricNum.textContent = '0';
-            }
+        if (idx !== lastActiveIdx) {
+          // Reset all metrics
+          slides.forEach(slide => {
+            const m = slide.querySelector('.project-metric-number');
+            if (m) m.textContent = '0';
+          });
+          
+          // Animate current metric
+          const currentSlide = slides[idx];
+          const metricNum = currentSlide.querySelector('.project-metric-number');
+          if (metricNum) {
+            const target = parseFloat(metricNum.dataset.count);
+            const counter = { val: 0 };
+            gsap.to(counter, {
+              val: target, duration: 1, ease: 'power2.out',
+              onUpdate: () => {
+                metricNum.textContent = target >= 1000
+                  ? Math.floor(counter.val).toLocaleString() + '+'
+                  : Math.floor(counter.val);
+              }
+            });
           }
-        });
+          lastActiveIdx = idx;
+        }
       }
     });
   }
