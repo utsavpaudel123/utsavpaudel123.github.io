@@ -319,29 +319,54 @@
   // ---- Experience Timeline ----
   const timelineItems = document.querySelectorAll('.timeline-item');
   const timelineFill = document.querySelector('.timeline-line-fill');
+  const timelineElement = document.querySelector('.timeline');
 
-  if (timelineFill) {
-    gsap.to(timelineFill, {
-      height: '100%', ease: 'none',
-      scrollTrigger: { trigger: '.timeline', start: 'top 80%', end: 'bottom 20%', scrub: true }
+  if (timelineElement) {
+    let dotTriggers = [];
+
+    // 1. Calculate relative percentages for each dot dynamically to account for font-loading layout shifts
+    function calculateTimelineDots() {
+      const timelineHeight = timelineElement.offsetHeight || 1; 
+      // Dot is at top: 8px, height: 9px. Center is 8 + 4.5 = 12.5px
+      dotTriggers = Array.from(timelineItems).map(item => {
+        const dotCenterY = item.offsetTop + 12.5; 
+        return { element: item, threshold: dotCenterY / timelineHeight };
+      });
+    }
+
+    calculateTimelineDots();
+    ScrollTrigger.addEventListener('refresh', calculateTimelineDots); // Recalculate on resize/load
+
+    // 2. Master tracking
+    if (timelineFill) {
+      ScrollTrigger.create({
+        trigger: timelineElement,
+        start: 'top 50%',
+        end: 'bottom 50%',
+        onUpdate: (self) => {
+          timelineFill.style.height = `${self.progress * 100}%`;
+          
+          dotTriggers.forEach(dot => {
+            if (self.progress >= dot.threshold) {
+              dot.element.classList.add('active');
+            } else {
+              dot.element.classList.remove('active');
+            }
+          });
+        }
+      });
+    }
+
+    // 3. Simple fade-in animation
+    timelineItems.forEach((item) => {
+      gsap.fromTo(item,
+        { opacity: 0, x: -30 },
+        { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out',
+          scrollTrigger: { trigger: item, start: 'top 80%', toggleActions: 'play none none reverse' }
+        }
+      );
     });
   }
-
-  timelineItems.forEach((item) => {
-    gsap.fromTo(item,
-      { opacity: 0, x: -30 },
-      { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out',
-        scrollTrigger: { trigger: item, start: 'top 80%', toggleActions: 'play none none reverse' }
-      }
-    );
-    ScrollTrigger.create({
-      trigger: item, start: 'top 50%', end: 'bottom 50%',
-      onEnter: () => item.classList.add('active'),
-      onLeave: () => item.classList.remove('active'),
-      onEnterBack: () => item.classList.add('active'),
-      onLeaveBack: () => item.classList.remove('active')
-    });
-  });
 
   // ================================================================
   // PROJECTS — Apple-style pinned showcase (FIXED)
