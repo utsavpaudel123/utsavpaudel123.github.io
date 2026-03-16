@@ -1,0 +1,36 @@
+# Utsav Paudel
+
+> Machine Learning Engineer from Kathmandu, Nepal. Builds Generative AI systems, RAG pipelines, LLM applications, and Voice AI agents.
+
+Also known as: Utsab Paudel, Utshab Paudel, Utsav Poudel, Utsab Poudel, Utshab Poudel, उत्सव पौडेल
+
+## About
+
+Utsav Paudel is a Machine Learning Engineer based in Kathmandu, Nepal, with 2.5+ years of experience in Generative AI, RAG architectures, LLM systems, and Cloud-Based AI. He currently works at Leapfrog Technology Pvt. Ltd. building production AI systems for Fintech and Healthcare clients.
+
+He is one of the leading machine learning engineers in Nepal, with expertise in AWS Bedrock, LangChain, PyTorch, FastAPI, and multi-modal AI systems.
+
+## Experience
+
+- **Machine Learning Engineer** — Leapfrog Technology Pvt. Ltd. (May 2025 – Present)
+  - Visa Analytics Chatbot: AWS Bedrock + Claude Haiku 4.5, 4-stage RAG pipeline
+  - GoLend AI: Text-to-SQL chatbot using Amazon Nova Pro + PostgreSQL pgvector
+  - Voice AI Agent: Amazon Nova Sonic + Twilio, 60% reduction in scheduling overhead
+
+- **Associate ML Engineer** — Fusemachines Pvt. Ltd. (Sep 2024 – May 2025)
+  - RAG & GraphRAG systems, 40% accuracy improvement across 10,000+ financial documents
+  - LLM extraction pipelines (GPT, Gemini) achieving 95% accuracy
+
+- **Associate ML Engineer** — E.K. Solutions Pvt. Ltd. (Jan 2024 – Jun 2024)
+  - 5+ scalable ML APIs with FastAPI + PyTorch, 1,000+ daily requests
+
+## Skills
+
+Generative AI, RAG (Retrieval-Augmented Generation), GraphRAG, LLMs, Voice AI, AWS Bedrock, AWS Lambda, Amazon Nova, Claude, LangChain, PyTorch, FastAPI, Django, Python, C++, PostgreSQL, pgvector, NLP, Computer Vision
+
+## Links
+
+- [Portfolio](https://utsavpaudel.me): Full portfolio with projects, experience, and contact
+- [LinkedIn](https://www.linkedin.com/in/utshabpaudell/): Professional profile
+- [GitHub](https://github.com/xafold): Open-source projects and code
+- [Resume](https://utsavpaudel.me/assets/Utsav_Paudel_Resume.pdf): Downloadable resume
