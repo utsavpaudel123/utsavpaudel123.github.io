@@ -34,6 +34,17 @@
       document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
+        // Activate custom cursor (hide native) only after first mouse movement
+        if (!document.body.classList.contains('cursor-active')) {
+          document.body.classList.add('cursor-active');
+        }
+      });
+
+      document.addEventListener('mouseleave', () => {
+        document.body.classList.remove('cursor-active');
+      });
+      document.addEventListener('mouseenter', () => {
+        document.body.classList.add('cursor-active');
       });
 
       // Hover detection

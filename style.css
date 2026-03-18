@@ -115,10 +115,14 @@
 /* ========================================================================
    CUSTOM CURSOR
    ======================================================================== */
-@media (pointer: fine) {
-  body { cursor: none !important; }
-  a, button, [role="button"], input, textarea, select, label { cursor: none !important; }
-}
+body.cursor-active { cursor: none !important; }
+body.cursor-active a,
+body.cursor-active button,
+body.cursor-active [role="button"],
+body.cursor-active input,
+body.cursor-active textarea,
+body.cursor-active select,
+body.cursor-active label { cursor: none !important; }
 
 .cursor-dot {
   position: fixed;
