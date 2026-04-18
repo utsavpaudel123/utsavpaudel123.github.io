@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <!--
    ______                            __
@@ -46,7 +46,7 @@
 <meta name="geo.placename" content="Kathmandu">
 <meta name="geo.position" content="27.7172;85.3240">
 <meta name="ICBM" content="27.7172, 85.3240">
-<meta name="theme-color" content="#030508">
+<meta name="theme-color" content="#f4efe6">
 
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
@@ -79,10 +79,7 @@
     "https://www.linkedin.com/in/utshabpaudell/",
     "https://github.com/xafold"
   ],
-  "nationality": {
-    "@type": "Country",
-    "name": "Nepal"
-  }
+  "nationality": { "@type": "Country", "name": "Nepal" }
 }
 </script>
 <script type="application/ld+json">
@@ -92,10 +89,7 @@
   "name": "Utsav Paudel — Machine Learning Engineer",
   "url": "https://utsavpaudel.me",
   "description": "Portfolio of Utsav Paudel — ML Engineer specializing in Generative AI, RAG, and LLM systems.",
-  "creator": {
-    "@type": "Person",
-    "name": "Utsav Paudel"
-  }
+  "creator": { "@type": "Person", "name": "Utsav Paudel" }
 }
 </script>
 <script type="application/ld+json">
@@ -103,7 +97,7 @@
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   "dateCreated": "2025-01-01T00:00:00+05:45",
-  "dateModified": "2026-03-18T00:00:00+05:45",
+  "dateModified": "2026-04-18T00:00:00+05:45",
   "mainEntity": {
     "@type": "Person",
     "name": "Utsav Paudel",
@@ -155,397 +149,740 @@
 <link rel="me" href="https://github.com/xafold">
 
 <!-- Fonts -->
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<!-- Styles -->
-<link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./style.css">
-
-<!-- Splitting.js -->
-<link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css">
-<link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting-cells.css">
 </head>
-
 <body>
-<!-- Custom Cursor -->
-<div class="cursor-dot" id="cursor-dot"></div>
-<div class="cursor-ring" id="cursor-ring"></div>
 
-<!-- Scroll Progress -->
-<div class="scroll-progress" id="scroll-progress"></div>
+<!-- Scroll progress -->
+<div class="scroll-prog" id="scrollProg"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
 
-<!-- Fixed Social Sidebar (Left) -->
-<div class="social-sidebar" id="social-sidebar">
-  <a href="https://github.com/xafold" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-  </a>
-  <a href="https://www.linkedin.com/in/utshabpaudell/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-  </a>
-  <a href="#" data-email="paudelutsav3" data-domain="gmail.com" onclick="window.open('mailto:'+this.dataset.email+'@'+this.dataset.domain);return false;" aria-label="Email">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-  </a>
-  <div class="sidebar-line"></div>
-</div>
-
-<!-- Fixed Resume Button (Right) -->
-<a href="./assets/Utsav_Paudel_Resume.pdf" class="resume-fixed" download aria-label="Download Resume">
-  <span>R</span><span>E</span><span>S</span><span>U</span><span>M</span><span>E</span>
-</a>
-
-<!-- Navigation -->
-<nav class="nav" id="nav">
-  <a href="#" class="nav-logo" data-magnetic>UP</a>
-  <ul class="nav-links">
-    <li><a href="#about" data-magnetic>About</a></li>
-    <li><a href="#experience" data-magnetic>Experience</a></li>
-    <li><a href="#projects" data-magnetic>Work</a></li>
-    <li><a href="#skills" data-magnetic>Skills</a></li>
-    <li><a href="#contact" data-magnetic>Contact</a></li>
-    <li>
-      <button class="theme-toggle" data-theme-toggle data-magnetic aria-label="Switch to light mode">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+<!-- ============================================================
+     MASTHEAD
+     ============================================================ -->
+<header class="masthead">
+  <div class="masthead-row">
+    <div class="mast-mark">
+      <span class="dot"></span>
+      <span><b>UTSAV PAUDEL</b> &nbsp;/&nbsp; PORTFOLIO &nbsp;/&nbsp; VOL. VI</span>
+    </div>
+    <div class="mast-meta">
+      <span>ISSUE <em>№ 024</em></span>
+      <span>KATHMANDU · <em>+05:45</em></span>
+      <span id="clock">—:—:—</span>
+    </div>
+    <nav class="mast-nav">
+      <a href="#about" data-hover>About</a>
+      <a href="#work" data-hover>Work</a>
+      <a href="#career" data-hover>Career</a>
+      <a href="#toolkit" data-hover>Toolkit</a>
+      <a href="#contact" class="nav-contact" data-hover>Contact</a>
+      <span class="divider"></span>
+      <button id="themeBtn" class="theme-btn" aria-label="Toggle theme" data-hover>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
       </button>
-    </li>
-  </ul>
-  <div class="nav-hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
+    </nav>
   </div>
-</nav>
+</header>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobile-menu">
-  <a href="#about" onclick="closeMobileMenu()">About</a>
-  <a href="#experience" onclick="closeMobileMenu()">Experience</a>
-  <a href="#projects" onclick="closeMobileMenu()">Work</a>
-  <a href="#skills" onclick="closeMobileMenu()">Skills</a>
-  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
-  <button class="theme-toggle" data-theme-toggle aria-label="Switch to light mode" style="margin-top:1rem">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-  </button>
+<!-- Ticker -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="star">✦</span> Currently shipping at Leapfrog Technology</span>
+    <span><span class="star">✦</span> Generative AI · RAG · LLM systems</span>
+    <span><span class="star">✦</span> Based in Kathmandu, Nepal — remote-friendly</span>
+    <span><span class="star">✦</span> 2.5+ years in production AI</span>
+    <span><span class="star">✦</span> Building voice agents &amp; text-to-SQL</span>
+    <span><span class="star">✦</span> Open to consults, collaborations, and weird problems</span>
+    <!-- duplicate for seamless loop -->
+    <span><span class="star">✦</span> Currently shipping at Leapfrog Technology</span>
+    <span><span class="star">✦</span> Generative AI · RAG · LLM systems</span>
+    <span><span class="star">✦</span> Based in Kathmandu, Nepal — remote-friendly</span>
+    <span><span class="star">✦</span> 2.5+ years in production AI</span>
+    <span><span class="star">✦</span> Building voice agents &amp; text-to-SQL</span>
+    <span><span class="star">✦</span> Open to consults, collaborations, and weird problems</span>
+  </div>
 </div>
 
-<!-- ================================================================
+<!-- ============================================================
      HERO
-     ================================================================ -->
+     ============================================================ -->
 <section class="hero" id="hero">
-  <canvas id="neural-canvas"></canvas>
-  <div class="hero-content">
-    <div class="hero-portrait-wrap">
-      <img src="./assets/mountain-portrait.jpg" alt="Utsav Paudel portrait" class="hero-portrait" width="140" height="140" loading="eager">
-      <div class="portrait-glow"></div>
+  <div class="wrap">
+    <div class="hero-stamp">
+      <span class="volume">The Utsav Paudel Quarterly</span>
+      <span>Est. 2023 · Dispatched from 27.7172° N, 85.3240° E</span>
     </div>
-    <div class="hero-text">
-      <p class="hero-greeting">Hello, I'm</p>
-      <h1 class="hero-name" data-splitting>Utsav Paudel</h1>
-      <p class="hero-tagline">
-        <span class="tagline-role">Machine Learning Engineer</span>
-        <span class="tagline-separator">—</span>
-        <span class="tagline-location">Kathmandu, Nepal</span>
-      </p>
-      <div class="hero-tags">
-        <span>Generative AI</span>
-        <span>RAG Systems</span>
-        <span>LLMs</span>
-        <span>AWS</span>
-        <span>Voice AI</span>
+
+    <h1 class="hero-headline">
+      <div class="line"><span>Utsav builds</span></div>
+      <div class="line"><span>machines that</span></div>
+      <div class="line"><span><span class="swap">think,</span> speak,</span></div>
+      <div class="line"><span>&amp; <em>reason</em>.</span></div>
+    </h1>
+
+    <div class="hero-tokens">
+      <span class="tok hot">Machine Learning Engineer</span>
+      <span class="tok">Generative AI</span>
+      <span class="tok">RAG &amp; GraphRAG</span>
+      <span class="tok">LLM systems</span>
+      <span class="tok">Voice AI</span>
+      <span class="tok">AWS Bedrock</span>
+      <span class="tok">Python · PyTorch · FastAPI</span>
+    </div>
+
+    <div class="hero-strip">
+      <div class="cell">
+        <span class="label">Current dispatch</span>
+        <p class="now">Shipping production <em>voice agents</em> and <em>RAG pipelines</em> at Leapfrog Technology — Kathmandu.</p>
+      </div>
+      <div class="cell">
+        <span class="label">Origin</span>
+        <p class="bullet"><b>Kathmandu, Nepal</b><br>Working between the Himalayas &amp; us-east-1.</p>
+      </div>
+      <div class="cell">
+        <span class="label">Availability</span>
+        <p class="bullet"><b>Open to</b> consults, collabs, and the kind of problem that nobody has a Stack Overflow answer for yet.</p>
       </div>
     </div>
   </div>
-  <div class="scroll-indicator">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
+
+  <!-- Portrait floater -->
+  <figure class="hero-portrait-card">
+    <img src="./assets/mountain-portrait.jpg" alt="Utsav Paudel, Langtang range in the background" width="240" height="240" loading="eager">
+    <figcaption class="cap">
+      <span>Fig. 01</span>
+      <span><em>↗</em> Langtang, NP</span>
+    </figcaption>
+  </figure>
+</section>
+
+<!-- Marquee -->
+<div class="mega-marquee" aria-hidden="true">
+  <div class="track">
+    <span>generative ai</span><span class="sep">✦</span>
+    <span>retrieval-augmented</span><span class="sep">/</span>
+    <span>voice agents</span><span class="sep">✦</span>
+    <span>text-to-sql</span><span class="sep">/</span>
+    <span>graphrag</span><span class="sep">✦</span>
+    <span>generative ai</span><span class="sep">✦</span>
+    <span>retrieval-augmented</span><span class="sep">/</span>
+    <span>voice agents</span><span class="sep">✦</span>
+    <span>text-to-sql</span><span class="sep">/</span>
+    <span>graphrag</span><span class="sep">✦</span>
   </div>
-</section>
+</div>
 
-<!-- ================================================================
-     PHOTO BREAK 1
-     ================================================================ -->
-<section class="photo-break" id="photo-break-1">
-  <img src="./assets/nepal-flag.jpg" alt="Utsav holding Nepal flag with Himalayan mountains in background" loading="lazy">
-  <div class="overlay"></div>
-  <p class="caption">Building AI from the roof of the world.</p>
-</section>
-
-<!-- ================================================================
+<!-- ============================================================
      ABOUT
-     ================================================================ -->
-<section class="about" id="about">
-  <div class="about-content">
-    <p class="section-label">01 / About</p>
-    <h2 class="about-heading">Bridging theory with<br><span class="gradient-text">production-grade AI.</span></h2>
-    <p class="about-description">Machine Learning Engineer with 2.5+ years of experience in Generative AI, RAG architectures, and Cloud-Based AI solutions across Fintech and Healthcare sectors. I build systems that think, speak, and reason — from text-to-SQL chatbots to voice AI agents that schedule patients in real time.</p>
-    <div class="about-stats">
-      <div class="stat">
-        <div class="stat-number" data-count="2.5">0</div>
-        <div class="stat-label">Years Experience</div>
+     ============================================================ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <header class="sec-head">
+      <span class="label reveal">§ 01 &nbsp;·&nbsp; About</span>
+      <h2 class="reveal delay-1">A brief <em>self-portrait</em>, in three columns.</h2>
+    </header>
+
+    <div class="about-body">
+      <aside class="sidecol">
+        <dl class="about-factsheet reveal">
+          <dt>Name</dt>
+          <dd>Utsav Paudel</dd>
+          <dt>Role</dt>
+          <dd>Machine Learning Engineer</dd>
+          <dt>Company</dt>
+          <dd>Leapfrog Technology</dd>
+          <dt>Based</dt>
+          <dd>Koteshwor, Kathmandu</dd>
+          <dt>Experience</dt>
+          <dd>2.5+ years, production AI</dd>
+          <dt>Stack</dt>
+          <dd class="pair">
+            <span class="pill">Python</span><span class="pill">AWS</span>
+          </dd>
+        </dl>
+      </aside>
+
+      <div class="col-a reveal delay-1">
+        <p class="lead">I bridge the theory with the <span class="marker">production-grade</span>.</p>
+        <p><span class="dropcap">M</span>achine Learning Engineer with 2.5+ years building Generative AI, RAG architectures, and cloud-native AI for fintech and healthcare. My favourite systems are the ones that think in one modality and speak in another — a phone call that becomes a database row, a stack of PDFs that becomes a conversation.</p>
+        <p>Right now I'm at Leapfrog Technology, deep in AWS Bedrock, Claude, and Amazon Nova. Before that, Fusemachines and E.K. Solutions, where I cut my teeth on retrieval, prompt engineering, and the unromantic art of making transformers fit inside a budget.</p>
       </div>
-      <div class="stat">
-        <div class="stat-number" data-count="10000">0</div>
-        <div class="stat-label">Documents Processed</div>
+
+      <div class="col-b reveal delay-2">
+        <p>Off-hours I live outside — trekking Langtang, following waterfalls, photographing the mountains that raised me. The thing I believe about engineering: you ship better systems if you remember how small you are.</p>
+        <p>I like working on problems that don't already have a clean answer. Ambiguity is where the interesting engineering lives. If that sounds like your weekend, <a href="#contact" style="border-bottom:1px solid var(--hot); color:var(--hot-ink)">let's talk</a>.</p>
       </div>
-      <div class="stat">
-        <div class="stat-number" data-count="95">0</div>
-        <div class="stat-label">% LLM Accuracy</div>
+    </div>
+
+    <!-- Counters -->
+    <div class="counters reveal delay-3">
+      <div class="cell">
+        <span class="label">Years in the trade</span>
+        <div class="big"><em>2.5</em>+</div>
+        <div class="sub">Since late 2023</div>
+      </div>
+      <div class="cell">
+        <span class="label">Documents retrieved</span>
+        <div class="big">10<em>,</em>000<span style="font-size:0.5em">+</span></div>
+        <div class="sub">Across RAG &amp; GraphRAG pipelines</div>
+      </div>
+      <div class="cell">
+        <span class="label">LLM extraction accuracy</span>
+        <div class="big">95<em>%</em></div>
+        <div class="sub">On structured extraction benchmarks</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================================================================
-     EXPERIENCE
-     ================================================================ -->
-<section class="experience" id="experience">
-  <div class="experience-inner">
-    <p class="section-label">02 / Experience</p>
-    <h2 class="section-heading">My <span class="gradient-text">career</span> & experience.</h2>
-
-    <div class="timeline">
-      <div class="timeline-line-fill"></div>
-
-      <div class="timeline-item">
-        <div class="timeline-card">
-          <div class="timeline-header">
-            <div class="timeline-role">Machine Learning Engineer</div>
-            <div class="timeline-date">May 2025 — Present</div>
-          </div>
-          <div class="timeline-company">Leapfrog Technology Pvt. Ltd.</div>
-          <ul class="timeline-points">
-            <li>Visa Analytics Chatbot using AWS Bedrock + Claude Haiku 4.5 with a <span class="metric">4-stage RAG pipeline</span></li>
-            <li>GoLend AI: Text-to-SQL chatbot powered by Amazon Nova Pro + PostgreSQL pgvector</li>
-            <li>Voice AI Agent using Amazon Nova Sonic + Twilio, achieving <span class="metric">60% reduction</span> in scheduling overhead</li>
-            <li>Automated patient referral pipeline using Textract + Nova Pro → OpenEMR via Lambda</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-card">
-          <div class="timeline-header">
-            <div class="timeline-role">Associate ML Engineer</div>
-            <div class="timeline-date">Sep 2024 — May 2025</div>
-          </div>
-          <div class="timeline-company">Fusemachines Pvt. Ltd.</div>
-          <ul class="timeline-points">
-            <li>Built RAG & GraphRAG systems with <span class="metric">40% accuracy improvement</span> across 10,000+ financial documents</li>
-            <li>LLM extraction pipelines (GPT, Gemini) achieving <span class="metric">95% accuracy</span></li>
-            <li>Retrieval optimization delivering <span class="metric">50% query time reduction</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-card">
-          <div class="timeline-header">
-            <div class="timeline-role">Associate ML Engineer</div>
-            <div class="timeline-date">Jan 2024 — Jun 2024</div>
-          </div>
-          <div class="timeline-company">E.K. Solutions Pvt. Ltd.</div>
-          <ul class="timeline-points">
-            <li>Built <span class="metric">5+ scalable ML models/APIs</span> using FastAPI + PyTorch handling 1,000+ daily requests</li>
-            <li><span class="metric">25% LLM accuracy improvement</span> via Chain-of-Thought prompt engineering</li>
-            <li><span class="metric">35% transformer performance</span> optimization with 20% memory reduction</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-card">
-          <div class="timeline-header">
-            <div class="timeline-role">ML Engineer Trainee</div>
-            <div class="timeline-date">Oct 2023 — Jan 2024</div>
-          </div>
-          <div class="timeline-company">E.K. Solutions Pvt. Ltd.</div>
-          <ul class="timeline-points">
-            <li>Foundational ML model development and training pipelines</li>
-            <li>Research and prototyping of NLP and computer vision solutions</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================
-     PROJECTS — Grid showcase with numbered cards
-     ================================================================ -->
-<section class="projects" id="projects">
-  <div class="projects-header">
-    <p class="section-label">03 / Work</p>
-    <h2 class="section-heading">What I've <span class="gradient-text">shipped.</span></h2>
-  </div>
-
-  <div class="projects-grid">
-    <div class="project-grid-card glass-card" data-reveal>
-      <div class="project-number">01</div>
-      <h3 class="project-title">Visa Analytics Chatbot</h3>
-      <p class="project-desc">AWS Bedrock Knowledge Base + Claude Haiku 4.5 with a 4-stage RAG pipeline and ID-mapping citation strategy for accurate visa document retrieval and analysis.</p>
-      <div class="project-tech">
-        <span>AWS Bedrock</span><span>Claude Haiku 4.5</span><span>RAG</span><span>Python</span>
-      </div>
-      <div class="project-metric">
-        <span class="project-metric-number" data-count="4">0</span>
-        <span class="project-metric-label">Stage RAG Pipeline</span>
-      </div>
-    </div>
-
-    <div class="project-grid-card glass-card" data-reveal>
-      <div class="project-number">02</div>
-      <h3 class="project-title">GoLend AI Assistant</h3>
-      <p class="project-desc">SQL-RAG system using Amazon Nova Pro/Lite with BM25 + pgvector Hybrid Search, IVFFlat/HNSW indexing + MMR reranking, and AWS Guardrails for safe financial lending queries.</p>
-      <div class="project-tech">
-        <span>Amazon Nova Pro</span><span>pgvector</span><span>BM25</span><span>SQL-RAG</span>
-      </div>
-      <div class="project-metric">
-        <span class="project-metric-number" data-count="50">0</span>
-        <span class="project-metric-label">% Query Performance Gain</span>
-      </div>
-    </div>
-
-    <div class="project-grid-card glass-card" data-reveal>
-      <div class="project-number">03</div>
-      <h3 class="project-title">Voice AI Patient Engagement</h3>
-      <p class="project-desc">Real-time speech IVR using Amazon Nova Sonic + Twilio for automated patient scheduling. Integrated Textract + Nova Pro → OpenEMR pipeline for automated patient referral processing.</p>
-      <div class="project-tech">
-        <span>Nova Sonic</span><span>Twilio</span><span>Textract</span><span>OpenEMR</span>
-      </div>
-      <div class="project-metric">
-        <span class="project-metric-number" data-count="60">0</span>
-        <span class="project-metric-label">% Scheduling Overhead Cut</span>
-      </div>
-    </div>
-
-    <div class="project-grid-card glass-card" data-reveal>
-      <div class="project-number">04</div>
-      <h3 class="project-title">Lender IQ</h3>
-      <p class="project-desc">10,000+ document extraction platform with Neo4j GraphRAG, achieving massive query performance improvement for complex financial relationship queries.</p>
-      <div class="project-tech">
-        <span>Neo4j</span><span>GraphRAG</span><span>LangChain</span><span>FastAPI</span>
-      </div>
-      <div class="project-metric">
-        <span class="project-metric-number" data-count="10000">0</span>
-        <span class="project-metric-label">Documents Processed</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================
-     PHOTO BREAK 2
-     ================================================================ -->
-<section class="photo-break" id="photo-break-2">
-  <img src="./assets/waterfall.jpg" alt="Utsav at waterfall during trek" loading="lazy">
+<!-- ============================================================
+     PHOTO PANEL — Nepal flag
+     ============================================================ -->
+<section class="photo-panel">
+  <img src="./assets/nepal-flag.jpg" alt="Utsav holding the Nepal flag at a mountain summit" loading="lazy" data-parallax>
   <div class="overlay"></div>
-  <p class="caption">Curious by nature.<br>Engineer by craft.</p>
+  <div class="quote">
+    <p class="q">Building AI from the <em>roof of the world</em>.</p>
+    <div class="meta">
+      <b>Mardi Himal, 2024</b>
+      Plate II · fig. 01
+    </div>
+  </div>
 </section>
 
-<!-- ================================================================
-     SKILLS
-     ================================================================ -->
-<section class="skills-section" id="skills">
-  <div class="skills-inner">
-    <p class="section-label">04 / Skills</p>
-    <h2 class="section-heading">My <span class="gradient-text">toolkit.</span></h2>
+<!-- ============================================================
+     WORK — case studies
+     ============================================================ -->
+<section class="sec" id="work" style="padding:0;">
+  <div class="wrap" style="padding-top:96px; padding-bottom:64px;">
+    <header class="sec-head">
+      <span class="label reveal">§ 02 &nbsp;·&nbsp; Selected work</span>
+      <h2 class="reveal delay-1">Four systems, <em>shipped.</em></h2>
+    </header>
+  </div>
 
-    <div class="skills-grid">
-      <div class="skill-category" data-reveal>
-        <div class="skill-category-title">Languages</div>
-        <div class="skill-tags">
-          <span>Python</span><span>C++</span><span>SQL</span>
+  <div class="projects-stack">
+
+    <!-- 01 Visa Analytics -->
+    <article class="project-case">
+      <div class="left">
+        <div class="num"><span>Case 01 — Fintech / Visa</span><b>AWS · Bedrock</b></div>
+        <h3>Visa Analytics Chatbot.</h3>
+        <p class="blurb">A four-stage RAG pipeline on AWS Bedrock + Claude Haiku 4.5, with an <b>ID-mapping citation strategy</b> so every answer points to the exact paragraph in the source document. No more hallucinated references.</p>
+        <dl class="meta">
+          <div><dt>Role</dt><dd>Lead ML Engineer</dd></div>
+          <div><dt>Year</dt><dd>2025 · Leapfrog</dd></div>
+          <div><dt>Stack</dt><dd>Bedrock, Claude, Python</dd></div>
+          <div><dt>Impact</dt><dd>Deployed to prod</dd></div>
+        </dl>
+        <div class="stack">
+          <span>AWS Bedrock</span><span>Claude Haiku 4.5</span><span>RAG</span><span>Python</span><span>FastAPI</span>
         </div>
       </div>
-      <div class="skill-category" data-reveal>
-        <div class="skill-category-title">AI / ML Frameworks</div>
-        <div class="skill-tags">
-          <span>PyTorch</span><span>LangChain</span><span>LangGraph</span><span>LangSmith</span><span>OpenCV</span><span>Google ADK</span><span>CrewAI</span>
+      <div class="right">
+        <div class="proj-viz viz-rag">
+          <span class="mono-cap">pipeline.schema</span>
+          <span class="mono-cap-r">4-stage</span>
+          <div class="stages">
+            <div><span class="s-num">01</span><span class="s-name">retrieve</span><span class="s-note">hybrid · bm25+dense</span></div>
+            <div class="active"><span class="s-num">02</span><span class="s-name">re-rank</span><span class="s-note">cross-encoder · top-k</span></div>
+            <div><span class="s-num">03</span><span class="s-name">cite-map</span><span class="s-note">id → span</span></div>
+            <div><span class="s-num">04</span><span class="s-name">answer</span><span class="s-note">claude haiku 4.5</span></div>
+          </div>
         </div>
       </div>
-      <div class="skill-category" data-reveal>
-        <div class="skill-category-title">Infrastructure</div>
-        <div class="skill-tags">
-          <span>Docker</span><span>MLFlow</span><span>Redis</span><span>Celery</span><span>Alembic</span>
+    </article>
+
+    <!-- 02 GoLend -->
+    <article class="project-case flip">
+      <div class="left">
+        <div class="num"><span>Case 02 — Fintech / Lending</span><b>Nova Pro · pgvector</b></div>
+        <h3>GoLend AI Assistant.</h3>
+        <p class="blurb">A Text-to-SQL assistant powered by Amazon Nova Pro with <b>BM25 + pgvector hybrid search</b>, IVFFlat / HNSW indexing, MMR re-ranking, and AWS Guardrails — so loan officers can ask "which applicants missed their third installment?" and get a correct query back, every time.</p>
+        <dl class="meta">
+          <div><dt>Role</dt><dd>ML Engineer</dd></div>
+          <div><dt>Year</dt><dd>2025 · Leapfrog</dd></div>
+          <div><dt>Stack</dt><dd>Nova Pro, Postgres, Python</dd></div>
+          <div><dt>Impact</dt><dd>50% faster queries</dd></div>
+        </dl>
+        <div class="stack">
+          <span>Nova Pro</span><span>pgvector</span><span>BM25</span><span>HNSW</span><span>PostgreSQL</span>
         </div>
       </div>
-      <div class="skill-category" data-reveal>
-        <div class="skill-category-title">Web Frameworks</div>
-        <div class="skill-tags">
-          <span>FastAPI</span><span>Django</span><span>Django REST</span>
+      <div class="right">
+        <div class="proj-viz viz-sql">
+          <span class="mono-cap">nl → sql · preview</span>
+          <span class="mono-cap-r">accepted</span>
+          <pre><span class="c">-- "which applicants missed their third installment?"</span>
+<span class="k">SELECT</span> a.id, a.name, a.email
+<span class="k">FROM</span>   applicants a
+<span class="k">JOIN</span>   installments i <span class="k">ON</span> i.applicant_id = a.id
+<span class="k">WHERE</span>  i.sequence = <span class="s">3</span>
+  <span class="k">AND</span>  i.paid_at <span class="k">IS NULL</span>
+  <span class="k">AND</span>  i.due_at &lt; <span class="nl">now()</span>
+<span class="k">ORDER BY</span> i.due_at <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="s">50</span>;</pre>
         </div>
       </div>
-      <div class="skill-category" data-reveal>
-        <div class="skill-category-title">Databases</div>
-        <div class="skill-tags">
-          <span>PostgreSQL (pgvector)</span><span>Neo4j</span><span>MongoDB</span><span>SQLite</span>
+    </article>
+
+    <!-- 03 Voice AI -->
+    <article class="project-case">
+      <div class="left">
+        <div class="num"><span>Case 03 — Healthcare / Voice</span><b>Nova Sonic · Twilio</b></div>
+        <h3>Voice AI for patient engagement.</h3>
+        <p class="blurb">A real-time IVR agent that picks up the phone, confirms insurance, and schedules follow-ups — built on Amazon Nova Sonic + Twilio, with a Textract → Nova Pro → OpenEMR pipeline behind it. <b>60% reduction in scheduling overhead.</b></p>
+        <dl class="meta">
+          <div><dt>Role</dt><dd>ML Engineer</dd></div>
+          <div><dt>Year</dt><dd>2025 · Leapfrog</dd></div>
+          <div><dt>Stack</dt><dd>Nova Sonic, Twilio, Lambda</dd></div>
+          <div><dt>Impact</dt><dd>60% less overhead</dd></div>
+        </dl>
+        <div class="stack">
+          <span>Nova Sonic</span><span>Twilio</span><span>Textract</span><span>OpenEMR</span><span>AWS Lambda</span>
         </div>
       </div>
-      <div class="skill-category" data-reveal>
-        <div class="skill-category-title">Cloud / AWS</div>
-        <div class="skill-tags">
-          <span>AWS Bedrock</span><span>Lambda</span><span>EC2</span><span>SQS</span><span>SNS</span><span>Google Vertex AI</span>
+      <div class="right">
+        <div class="proj-viz viz-voice">
+          <span class="mono-cap">call · transcript · 00:23</span>
+          <span class="mono-cap-r">live</span>
+          <div class="transcript-line">
+            <span class="who">caller</span>
+            <span>Hi, I need to move my follow-up, my daughter's sick.</span>
+          </div>
+          <div class="transcript-line agent">
+            <span class="who">agent</span>
+            <span>Of course. Dr. Mehta has openings Thursday at 10 or Friday at 2 — which works?</span>
+          </div>
+          <div class="transcript-line">
+            <span class="who">caller</span>
+            <span>Friday at 2, please.</span>
+          </div>
+          <div class="transcript-line agent">
+            <span class="who">agent</span>
+            <span>Booked. I'll text the confirmation to the number on file.</span>
+          </div>
+          <div class="wave" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 04 LenderIQ / GraphRAG -->
+    <article class="project-case flip">
+      <div class="left">
+        <div class="num"><span>Case 04 — Fintech / Analytics</span><b>Neo4j · GraphRAG</b></div>
+        <h3>Lender IQ · GraphRAG.</h3>
+        <p class="blurb">A knowledge-graph-backed retrieval system over <b>10,000+ financial documents</b>. Entities and relationships extracted with LLMs, stored in Neo4j, and queried with GraphRAG to answer questions traditional RAG can't — "which guarantors are co-signing loans across three or more portfolios?"</p>
+        <dl class="meta">
+          <div><dt>Role</dt><dd>ML Engineer</dd></div>
+          <div><dt>Year</dt><dd>2024 · Fusemachines</dd></div>
+          <div><dt>Stack</dt><dd>Neo4j, LangChain, Python</dd></div>
+          <div><dt>Impact</dt><dd>40% accuracy lift</dd></div>
+        </dl>
+        <div class="stack">
+          <span>Neo4j</span><span>GraphRAG</span><span>LangChain</span><span>FastAPI</span><span>GPT</span>
+        </div>
+      </div>
+      <div class="right">
+        <div class="proj-viz viz-graph">
+          <span class="mono-cap">knowledge-graph · subset</span>
+          <span class="mono-cap-r">neo4j</span>
+          <svg viewBox="0 0 500 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g stroke="currentColor" stroke-opacity="0.35" fill="none" stroke-width="1">
+              <line x1="250" y1="180" x2="110" y2="90"/>
+              <line x1="250" y1="180" x2="390" y2="90"/>
+              <line x1="250" y1="180" x2="90" y2="230"/>
+              <line x1="250" y1="180" x2="420" y2="250"/>
+              <line x1="250" y1="180" x2="200" y2="320"/>
+              <line x1="250" y1="180" x2="320" y2="320"/>
+              <line x1="110" y1="90"  x2="90"  y2="230"/>
+              <line x1="390" y1="90"  x2="420" y2="250"/>
+              <line x1="200" y1="320" x2="320" y2="320"/>
+              <line x1="110" y1="90"  x2="200" y2="320"/>
+            </g>
+            <g font-family="JetBrains Mono, monospace" font-size="9" fill="currentColor" fill-opacity="0.55">
+              <text x="175" y="130">GUARANTEES</text>
+              <text x="315" y="130">LENDS_TO</text>
+              <text x="150" y="215">CO_SIGNS</text>
+              <text x="335" y="220">HOLDS</text>
+              <text x="215" y="260">DEFAULTS_ON</text>
+              <text x="285" y="260">SERVICES</text>
+            </g>
+            <g font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">
+              <g><circle cx="250" cy="180" r="34" fill="#e94a2f"/><text x="250" y="184" fill="#f4efe6">Lender A</text></g>
+              <g><circle cx="110" cy="90" r="22" fill="#141413"/><text x="110" y="94" fill="#f4efe6">Applicant</text></g>
+              <g><circle cx="390" cy="90" r="22" fill="#141413"/><text x="390" y="94" fill="#f4efe6">Portfolio</text></g>
+              <g><circle cx="90" cy="230" r="22" fill="#141413"/><text x="90" y="234" fill="#f4efe6">Guarantor</text></g>
+              <g><circle cx="420" cy="250" r="22" fill="#141413"/><text x="420" y="254" fill="#f4efe6">Installment</text></g>
+              <g><circle cx="200" cy="320" r="22" fill="#141413"/><text x="200" y="324" fill="#f4efe6">Document</text></g>
+              <g><circle cx="320" cy="320" r="22" fill="#141413"/><text x="320" y="324" fill="#f4efe6">Branch</text></g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     CAREER LEDGER
+     ============================================================ -->
+<section class="sec" id="career">
+  <div class="wrap">
+    <header class="sec-head">
+      <span class="label reveal">§ 03 &nbsp;·&nbsp; Career</span>
+      <h2 class="reveal delay-1">The ledger, <em>in reverse</em> chronology.</h2>
+    </header>
+
+    <div class="ledger">
+      <div class="ledger-row current reveal">
+        <div class="year"><b>May 2025</b><br>Present</div>
+        <div>
+          <div class="role">Machine Learning Engineer<span class="company">Leapfrog Technology Pvt. Ltd.</span></div>
+        </div>
+        <ul class="bullets">
+          <li>Visa Analytics Chatbot on AWS Bedrock + Claude Haiku 4.5 — <b>4-stage RAG</b>, ID-mapping citations.</li>
+          <li>GoLend AI: Text-to-SQL on Amazon Nova Pro + PostgreSQL pgvector.</li>
+          <li>Voice AI agent on Nova Sonic + Twilio — <b>60% less scheduling overhead</b>.</li>
+          <li>Automated patient-referral pipeline, Textract → Nova Pro → OpenEMR.</li>
+        </ul>
+        <div class="stack">
+          <span>Bedrock</span><span>Nova Pro</span><span>Nova Sonic</span><span>Twilio</span><span>Lambda</span>
+        </div>
+      </div>
+
+      <div class="ledger-row reveal">
+        <div class="year"><b>Sep 2024</b><br>May 2025</div>
+        <div>
+          <div class="role">Associate ML Engineer<span class="company">Fusemachines Pvt. Ltd.</span></div>
+        </div>
+        <ul class="bullets">
+          <li>RAG &amp; GraphRAG systems with <b>40% accuracy improvement</b> across 10,000+ financial documents.</li>
+          <li>LLM extraction pipelines (GPT, Gemini) reaching <b>95% accuracy</b>.</li>
+          <li>Retrieval optimization delivering <b>50% query time reduction</b>.</li>
+        </ul>
+        <div class="stack">
+          <span>Neo4j</span><span>LangChain</span><span>GPT</span><span>Gemini</span><span>Python</span>
+        </div>
+      </div>
+
+      <div class="ledger-row reveal">
+        <div class="year"><b>Jan 2024</b><br>Jun 2024</div>
+        <div>
+          <div class="role">Associate ML Engineer<span class="company">E.K. Solutions Pvt. Ltd.</span></div>
+        </div>
+        <ul class="bullets">
+          <li><b>5+ scalable ML APIs</b> on FastAPI + PyTorch serving 1,000+ daily requests.</li>
+          <li><b>25% LLM accuracy lift</b> via Chain-of-Thought prompt engineering.</li>
+          <li><b>35% transformer performance</b> optimization with 20% memory reduction.</li>
+        </ul>
+        <div class="stack">
+          <span>FastAPI</span><span>PyTorch</span><span>Docker</span><span>Redis</span>
+        </div>
+      </div>
+
+      <div class="ledger-row reveal">
+        <div class="year"><b>Oct 2023</b><br>Jan 2024</div>
+        <div>
+          <div class="role">ML Engineer Trainee<span class="company">E.K. Solutions Pvt. Ltd.</span></div>
+        </div>
+        <ul class="bullets">
+          <li>Foundational ML model development and training pipelines.</li>
+          <li>Prototyping of NLP and computer-vision solutions.</li>
+        </ul>
+        <div class="stack">
+          <span>PyTorch</span><span>OpenCV</span><span>NumPy</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================================================================
+<!-- ============================================================
+     PHOTO PANEL — Waterfall
+     ============================================================ -->
+<section class="photo-panel">
+  <img src="./assets/waterfall.jpg" alt="Utsav at a waterfall on a trek" loading="lazy" data-parallax>
+  <div class="overlay"></div>
+  <div class="quote">
+    <p class="q"><em>Curious</em> by nature.<br>Engineer by craft.</p>
+    <div class="meta">
+      <b>On trail, 2024</b>
+      Plate III · fig. 02
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TOOLKIT
+     ============================================================ -->
+<section class="sec" id="toolkit">
+  <div class="wrap">
+    <header class="sec-head">
+      <span class="label reveal">§ 04 &nbsp;·&nbsp; Toolkit</span>
+      <h2 class="reveal delay-1">The <em>workshop</em>, laid out flat.</h2>
+    </header>
+
+    <div class="skills-grid reveal delay-2">
+      <div class="cell s-6">
+        <div class="cat"><span>AI · ML frameworks</span><em>07</em></div>
+        <div class="title">Where the thinking happens.</div>
+        <ul>
+          <li class="accent">PyTorch</li>
+          <li class="accent">LangChain</li>
+          <li>LangGraph</li>
+          <li>LangSmith</li>
+          <li>CrewAI</li>
+          <li>Google ADK</li>
+          <li>OpenCV</li>
+        </ul>
+      </div>
+      <div class="cell s-3">
+        <div class="cat"><span>Languages</span><em>03</em></div>
+        <div class="title">Daily drivers.</div>
+        <ul>
+          <li class="accent">Python</li>
+          <li>SQL</li>
+          <li>C++</li>
+        </ul>
+      </div>
+      <div class="cell s-3">
+        <div class="cat"><span>Web frameworks</span><em>03</em></div>
+        <div class="title">APIs &amp; edges.</div>
+        <ul>
+          <li class="accent">FastAPI</li>
+          <li>Django</li>
+          <li>Django REST</li>
+        </ul>
+      </div>
+
+      <div class="cell s-4">
+        <div class="cat"><span>Databases</span><em>04</em></div>
+        <div class="title">Where state lives.</div>
+        <ul>
+          <li class="accent">PostgreSQL (pgvector)</li>
+          <li>Neo4j</li>
+          <li>MongoDB</li>
+          <li>SQLite</li>
+        </ul>
+      </div>
+      <div class="cell s-4">
+        <div class="cat"><span>Cloud</span><em>06</em></div>
+        <div class="title">AWS, mostly.</div>
+        <ul>
+          <li class="accent">AWS Bedrock</li>
+          <li>Lambda</li>
+          <li>EC2</li>
+          <li>SQS</li>
+          <li>SNS</li>
+          <li>Vertex AI</li>
+        </ul>
+      </div>
+      <div class="cell s-4">
+        <div class="cat"><span>Infrastructure</span><em>05</em></div>
+        <div class="title">Plumbing, done right.</div>
+        <ul>
+          <li>Docker</li>
+          <li>MLFlow</li>
+          <li>Redis</li>
+          <li>Celery</li>
+          <li>Alembic</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      CONTACT
-     ================================================================ -->
+     ============================================================ -->
 <section class="contact" id="contact">
-  <div class="contact-inner">
-    <p class="section-label">05 / Contact</p>
-    <h2 class="contact-heading">Let's <span class="gradient-text">connect.</span></h2>
-    <p class="contact-sub">Open to collaboration, interesting problems, and building the future of AI.</p>
-
-    <div class="contact-links">
-      <a href="#" class="contact-link" data-magnetic data-email="paudelutsav3" data-domain="gmail.com" onclick="window.open('mailto:'+this.dataset.email+'@'+this.dataset.domain);return false;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        Email
-      </a>
-      <a href="https://www.linkedin.com/in/utshabpaudell/" class="contact-link" data-magnetic target="_blank" rel="noopener noreferrer">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        LinkedIn
-      </a>
-      <a href="https://github.com/xafold" class="contact-link" data-magnetic target="_blank" rel="noopener noreferrer">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-        GitHub
-      </a>
-      <a href="tel:+9779861092858" class="contact-link" data-magnetic target="_blank" rel="noopener noreferrer">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        Phone
-      </a>
+  <div class="wrap">
+    <span class="label" style="color:rgba(242,237,227,0.55); display:block; margin-bottom:24px">§ 05 &nbsp;·&nbsp; Get in touch</span>
+    <div class="mega reveal">
+      Have a problem that's <em>a little too</em><br>
+      weird for the average<br>
+      ML shop?
+      <br>
+      <a href="#" id="emailLink" data-email="paudelutsav3" data-domain="gmail.com">Email&nbsp;me.</a>
     </div>
 
-    <a href="./assets/Utsav_Paudel_Resume.pdf" class="resume-btn" data-magnetic download>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Download Resume
-    </a>
+    <div class="contact-meta">
+      <div>
+        <span class="label">Email</span>
+        <a href="#" id="emailLink2" data-email="paudelutsav3" data-domain="gmail.com">paudelutsav3<br>@gmail.com</a>
+      </div>
+      <div>
+        <span class="label">Phone</span>
+        <a href="tel:+9779861092858">+977 986-109-2858</a>
+      </div>
+      <div>
+        <span class="label">Elsewhere</span>
+        <a href="https://github.com/xafold" target="_blank" rel="noopener">GitHub ↗</a><br>
+        <a href="https://www.linkedin.com/in/utshabpaudell/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div>
+        <a class="resume-cta" href="./assets/Utsav_Paudel_Resume.pdf" download data-hover>
+          Download CV <span>↓</span>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ================================================================
+<!-- ============================================================
      FOOTER
-     ================================================================ -->
-<footer>
-  <p>&copy; 2025 Utsav Paudel &middot; Koteshwor, Kathmandu, Nepal</p>
-  <!-- SEO: name spelling variations for search discoverability (visually hidden, accessible) -->
+     ============================================================ -->
+<footer class="foot">
+  <div class="wrap foot-row">
+    <span><span class="blink"></span> © 2026 · Utsav Paudel · Koteshwor, Kathmandu</span>
+    <span>Design system · UP/06 · editorial playful</span>
+    <span>Last dispatch · <span id="lastUpdated">—</span></span>
+  </div>
+  <!-- SEO: name spelling variations for search discoverability -->
   <p class="sr-only">Also known as: Utsab Paudel, Utsav Poudel, Utsab Poudel, Utsav Poudyal, Utsab Poudyal. उत्सव पौडेल — ML Engineer based in Kathmandu, Nepal. Personal website: utsavpaudel.me</p>
 </footer>
 
-<!-- ================================================================
-     SCRIPTS
-     ================================================================ -->
-<!-- GSAP + ScrollTrigger -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js" defer></script>
+<script>
+(function(){
+  'use strict';
 
-<!-- Splitting.js -->
-<script src="https://unpkg.com/splitting/dist/splitting.min.js" defer></script>
+  // ---------- Theme — restore from localStorage ----------
+  try {
+    const saved = localStorage.getItem('up-theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+  } catch(e){}
 
-<!-- App -->
-<script src="./app.js" defer></script>
+  // ---------- Clock (Kathmandu +05:45) ----------
+  function tick() {
+    const d = new Date();
+    const pad = n => String(n).padStart(2,'0');
+    const utc = d.getTime() + d.getTimezoneOffset()*60000;
+    const ktm = new Date(utc + (5*60 + 45)*60000);
+    const s = pad(ktm.getHours()) + ':' + pad(ktm.getMinutes()) + ':' + pad(ktm.getSeconds());
+    const el = document.getElementById('clock');
+    if (el) el.textContent = 'LOCAL ' + s;
+  }
+  tick(); setInterval(tick, 1000);
+
+  const lu = document.getElementById('lastUpdated');
+  if (lu) lu.textContent = new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' }).toUpperCase();
+
+  // ---------- Theme toggle ----------
+  const themeBtn = document.getElementById('themeBtn');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const now = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', now);
+      try { localStorage.setItem('up-theme', now); } catch(e){}
+    });
+  }
+
+  // ---------- Email obfuscation ----------
+  document.querySelectorAll('[data-email]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      window.location.href = 'mailto:' + a.dataset.email + '@' + a.dataset.domain;
+    });
+  });
+
+  // ---------- Intersection observer reveals ----------
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ---------- Hero entry ----------
+  requestAnimationFrame(() => {
+    const h = document.getElementById('hero');
+    if (h) h.classList.add('entered');
+  });
+
+  // ---------- Hero headline line animation ----------
+  const headline = document.querySelector('.hero-headline');
+  const lines = document.querySelectorAll('.hero-headline .line > span');
+  lines.forEach((s, i) => { s.style.transitionDelay = (i*120 + 80) + 'ms'; });
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      if (headline) headline.classList.add('in');
+    });
+  });
+
+  // ---------- Custom cursor ----------
+  const cursor = document.getElementById('cursor');
+  const isTouch = window.matchMedia('(pointer: coarse)').matches;
+  if (!isTouch && cursor) {
+    let x = window.innerWidth/2, y = window.innerHeight/2;
+    let cx = x, cy = y;
+    document.addEventListener('mousemove', e => {
+      x = e.clientX; y = e.clientY;
+      if (!document.body.classList.contains('cursor-ready')) {
+        document.body.classList.add('cursor-ready');
+      }
+    });
+    (function loop(){
+      cx += (x-cx)*0.22; cy += (y-cy)*0.22;
+      cursor.style.left = cx + 'px';
+      cursor.style.top = cy + 'px';
+      requestAnimationFrame(loop);
+    })();
+    const hoverSel = 'a, button, [data-hover], .hero-tokens .tok, .project-case, .counters .cell, .skills-grid .cell, .ledger-row';
+    document.addEventListener('mouseover', e => {
+      if (e.target.closest(hoverSel)) cursor.classList.add('hovering');
+    });
+    document.addEventListener('mouseout', e => {
+      if (e.target.closest(hoverSel)) cursor.classList.remove('hovering');
+    });
+  }
+
+  // ---------- Scroll progress ----------
+  const sp = document.getElementById('scrollProg');
+  const updateProg = () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop || document.body.scrollTop) / (h.scrollHeight - h.clientHeight);
+    if (sp) sp.style.width = (pct * 100) + '%';
+  };
+  document.addEventListener('scroll', updateProg, { passive: true });
+  updateProg();
+
+  // ---------- Photo parallax ----------
+  const parallaxImgs = document.querySelectorAll('[data-parallax]');
+  const onScroll = () => {
+    parallaxImgs.forEach(img => {
+      const rect = img.parentElement.getBoundingClientRect();
+      const center = rect.top + rect.height/2 - window.innerHeight/2;
+      img.style.transform = 'translate3d(0,' + (-center * 0.08) + 'px,0) scale(1.12)';
+    });
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // ---------- Smooth scroll ----------
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.scrollY - 70;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
