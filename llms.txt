@@ -1,6 +1,6 @@
 # Utsav Paudel
 
-> Machine Learning Engineer from Kathmandu, Nepal. Builds Generative AI systems, RAG pipelines, LLM applications, and Voice AI agents.
+> Machine Learning Engineer and AI Engineer from Kathmandu, Nepal. Builds Generative AI systems, RAG pipelines, LLM applications, and Voice AI agents.
 
 Also known as: Utsab Paudel, Utshab Paudel, Utsav Poudel, Utsab Poudel, Utshab Poudel, उत्सव पौडेल
 
@@ -8,7 +8,7 @@ Also known as: Utsab Paudel, Utshab Paudel, Utsav Poudel, Utsab Poudel, Utshab P
 
 Utsav Paudel is a Machine Learning Engineer based in Kathmandu, Nepal, with 2.5+ years of experience in Generative AI, RAG architectures, LLM systems, and Cloud-Based AI. He currently works at Leapfrog Technology Pvt. Ltd. building production AI systems for Fintech and Healthcare clients.
 
-He is one of the leading machine learning engineers in Nepal, with expertise in AWS Bedrock, LangChain, PyTorch, FastAPI, and multi-modal AI systems.
+He is one of the leading machine learning engineers and AI engineers in Nepal, with expertise in AWS Bedrock, LangChain, PyTorch, FastAPI, and multi-modal AI systems.
 
 ## Experience
 
