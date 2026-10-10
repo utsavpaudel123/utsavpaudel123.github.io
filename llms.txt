@@ -24,6 +24,11 @@ He is one of the leading machine learning engineers and AI engineers in Nepal, w
 - **Associate ML Engineer** — E.K. Solutions Pvt. Ltd. (Jan 2024 – Jun 2024)
   - 5+ scalable ML APIs with FastAPI + PyTorch, 1,000+ daily requests
 
+## Open source
+
+- [cc-explain-this](https://github.com/xafold/cc-explain-this): Claude Code plugin (TypeScript) with a side pane that explains each step Claude takes in plain English, and marks risky or failed steps.
+- [jev-router](https://github.com/xafold/jev-router): automatic, cache-aware model and effort switching for Claude Code (Rust proxy that routes each message to Haiku, Sonnet or Opus).
+
 ## Skills
 
 Generative AI, RAG (Retrieval-Augmented Generation), GraphRAG, LLMs, Voice AI, AWS Bedrock, AWS Lambda, Amazon Nova, Claude, LangChain, PyTorch, FastAPI, Django, Python, C++, PostgreSQL, pgvector, NLP, Computer Vision
