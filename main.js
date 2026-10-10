@@ -283,32 +283,30 @@
   }));
 
   // ============================================================
-  // 02 SQL - schema search, token-streamed SQL, execution
+  // 02 SQL - schema search, token-streamed SQL, execution, plain-language answer
   // ============================================================
   const SQL = [
     {
       q: 'Which applicants missed their third installment?', t: ['applicants', 'loans', 'installments'],
       sql: 'SELECT a.id, l.amount, i.due_at\nFROM applicants a\nJOIN loans l ON l.applicant_id = a.id\nJOIN installments i ON i.loan_id = l.id\nWHERE i.seq = 3 AND i.paid_at IS NULL\nORDER BY i.due_at DESC\nLIMIT 50;',
-      cols: ['id', 'amount', 'due_at'],
-      rows: [['APL-2291', '420,000', '2025-08-14'], ['APL-1873', '185,500', '2025-08-09'], ['APL-3310', '260,000', '2025-07-28'], ['APL-0954', '95,000', '2025-07-21']],
-      ms: 38,
+      n: 4, ms: 38,
+      a: 'Four applicants missed their third installment. The latest is APL-2291, with 420,000 due on 14 Aug 2025. The other three are APL-1873, APL-3310 and APL-0954.',
     },
     {
       q: 'What is the average loan size by region this quarter?', t: ['loans', 'branches'],
       sql: "SELECT b.region, ROUND(AVG(l.amount)) AS avg_amount\nFROM loans l\nJOIN branches b ON b.id = l.branch_id\nWHERE l.created_at >= date_trunc('quarter', now())\nGROUP BY b.region\nORDER BY avg_amount DESC;",
-      cols: ['region', 'avg_amount'],
-      rows: [['Central', '512,400'], ['West', '388,900'], ['East', '301,250'], ['North', '287,600']],
-      ms: 52,
+      n: 4, ms: 52,
+      a: 'Central has the largest average loan this quarter at 512,400. West is next at 388,900, then East at 301,250 and North at 287,600.',
     },
   ];
   const KW = /^(SELECT|FROM|JOIN|ON|WHERE|AND|IS|NULL|ORDER|BY|DESC|LIMIT|GROUP|AS)$/, FN = /^(ROUND|AVG|date_trunc|now)$/;
 
   $$('[data-scene="sql"]').forEach(el => scene(el, async wait => {
-    const q = $('[data-q]', el), code = $('[data-sql]', el), res = $('[data-res]', el);
+    const q = $('[data-q]', el), code = $('[data-sql]', el), ans = $('[data-a]', el);
     const st = $('[data-status]', el), tables = $$('[data-schema] li', el);
     for (let r = 0; ; r = (r + 1) % SQL.length) {
       const d = SQL[r];
-      q.textContent = ''; code.textContent = ''; res.innerHTML = '';
+      q.textContent = ''; code.textContent = ''; ans.textContent = '';
       tables.forEach(li => li.classList.remove('on'));
       st.textContent = 'waiting for question';
       await type(q, d.q, wait, 30);
@@ -326,16 +324,18 @@
       st.textContent = 'guardrails · read-only ✓';
       await wait(700);
 
-      st.textContent = `executed · ${d.rows.length} rows · ${d.ms} ms`;
-      res.innerHTML = `<table class="res"><thead><tr>${d.cols.map(c => `<th>${c}</th>`).join('')}</tr></thead><tbody>${
-        d.rows.map(row => `<tr>${row.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
-      for (const tr of $$('tbody tr', res)) { await wait(130); tr.classList.add('in'); }
+      st.textContent = `executed · ${d.n} rows · ${d.ms} ms`;
+      await wait(600);
+
+      st.textContent = 'answer · nova pro';
+      for (const word of d.a.split(' ')) { ans.append((ans.textContent ? ' ' : '') + word); await wait(55); }
+      st.textContent = `answered · ${d.n} rows · ${d.ms} ms`;
       await wait(4500);
     }
   }));
 
   // ============================================================
-  // 03 VOICE - live waveform + transcript + backend events
+  // 03 VOICE - live waveform + transcript + agent tool calls + doctor's calendar
   // ============================================================
   const CALL = [
     ['agent', 'Thanks for calling. How can I help today?'],
@@ -343,9 +343,19 @@
     [0], [1],
     ['agent', 'Sorry to hear that. Dr. Mehta has Thursday at 10 or Friday at 2. Which works?'],
     ['caller', 'Friday at 2, please.'],
-    [2],
+    [2], [3],
     ['agent', "Booked. I'll text the confirmation to the number on file."],
-    [3],
+    [4],
+  ];
+  // [call, result, calendar change]; c = { old, free: [thu, fri], neu }
+  const TOOLS = [
+    ['verify_patient(caller_id)', 'P-4471 · insurance active', c => c.old.classList.add('hit')],
+    ['find_slots(dr_mehta, 3d)', 'Thu 10:00 · Fri 14:00', c => c.free.forEach(f => f.classList.add('on'))],
+    ['book(openemr, Fri 14:00)', 'appt A-2093 confirmed', c => c.free[1].classList.add('held')],
+    ['calendar.add(dr_mehta)', 'added Fri 14:00 · freed Wed 11:00', c => {
+      c.neu.classList.add('on'); c.old.classList.add('gone'); c.free[0].classList.remove('on');
+    }],
+    ['send_sms(•••0193)', 'confirmation delivered', () => {}],
   ];
 
   function drawWave(ctx, w, h, t, s) {
@@ -370,9 +380,11 @@
     const s = { who: null, amp: 0, col: C.acc };
     animate($('[data-wave]', el), (ctx, w, h, t) => drawWave(ctx, w, h, t, s));
     scene(el, async wait => {
-      const lines = $('[data-lines]', el), evs = $$('[data-events] li', el), st = $('[data-status]', el);
+      const lines = $('[data-lines]', el), tools = $('[data-tools]', el), st = $('[data-status]', el);
+      const c = { old: $('[data-ev="old"]', el), free: $$('[data-ev="free"]', el), neu: $('[data-ev="new"]', el) };
       for (;;) {
-        lines.innerHTML = ''; evs.forEach(e => e.classList.remove('on')); s.who = null;
+        lines.innerHTML = ''; tools.innerHTML = ''; s.who = null;
+        c.old.classList.remove('hit', 'gone'); c.free.forEach(f => f.classList.remove('on', 'held')); c.neu.classList.remove('on');
         st.textContent = 'ringing…';
         await wait(1100);
         let sec = 0;
@@ -381,7 +393,15 @@
         const timer = setInterval(() => { sec++; st.textContent = 'live ' + clock(); }, 1000);
         try {
           for (const [who, text] of CALL) {
-            if (typeof who === 'number') { evs[who].classList.add('on'); await wait(380); continue; }
+            if (typeof who === 'number') {
+              const [call, out, fx] = TOOLS[who], step = document.createElement('div');
+              step.className = 'cc-step run';
+              step.innerHTML = '<p class="cc-call"><i>⏺</i></p><p class="cc-out">⎿ running…</p>';
+              step.firstChild.append(call); tools.append(step);
+              await wait(650);
+              step.className = 'cc-step ok'; step.lastChild.textContent = '⎿ ' + out; fx(c);
+              await wait(380); continue;
+            }
             const li = document.createElement('li');
             li.className = who; li.innerHTML = `<b class="mono">${who}</b><span></span>`;
             lines.append(li);
@@ -460,11 +480,11 @@
     const g = { hop: 4, at: 0 };
     animate($('[data-graph]', el), (ctx, w, h, t) => drawGraph(ctx, w, h, t, g));
     const q = $('[data-q]', el), cy = $('[data-cypher]', el), st = $('[data-status]', el), ans = $('[data-a]', el);
-    const Q = q.textContent, CY = cy.textContent;
+    const Q = q.textContent, CY = cy.textContent, A = ans.textContent;
     scene(el, async wait => {
       const hop = (n, s) => { g.hop = n; g.at = performance.now(); st.textContent = s; };
       for (;;) {
-        hop(0, 'waiting for query'); q.textContent = ''; cy.textContent = ''; ans.classList.remove('on');
+        hop(0, 'waiting for query'); q.textContent = ''; cy.textContent = ''; ans.textContent = '';
         await type(q, Q, wait, 30);
         st.textContent = 'text → cypher';
         await type(cy, CY, wait, 9);
@@ -472,7 +492,9 @@
         hop(2, 'hop 2 · CO_SIGNS → (:Loan)'); await wait(1500);
         hop(3, 'hop 3 · IN → (:Portfolio)'); await wait(1500);
         hop(4, 'aggregate · count(DISTINCT p) ≥ 3'); await wait(900);
-        ans.classList.add('on'); st.textContent = 'done · 1 match · 6 edges';
+        st.textContent = 'answer · gpt';
+        for (const word of A.split(' ')) { ans.append((ans.textContent ? ' ' : '') + word); await wait(55); }
+        st.textContent = 'done · 1 match · 6 edges';
         await wait(5000);
       }
     });

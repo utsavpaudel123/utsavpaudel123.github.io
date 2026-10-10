@@ -428,16 +428,10 @@ h2 em, h3 em {
 .code .k { color: var(--acc-2); }
 .code .f { color: var(--ok); }
 .code .s { color: var(--acc); }
-.res { width: 100%; border-collapse: collapse; font-size: 11.5px; }
-.res th { text-align: left; font-weight: 500; color: var(--mut); padding: 6px 10px; border-bottom: 1px solid var(--line-2); }
-.res td { padding: 6px 10px; border-bottom: 1px solid var(--line); }
-.res tr { transition: opacity 0.35s, transform 0.35s var(--ease); }
-.viz.live .res tbody tr { opacity: 0; transform: translateY(4px); }
-.viz.live .res tbody tr.in { opacity: 1; transform: none; }
 
 /* ---------- 03 Voice ---------- */
 .wave {
-  display: block; width: 100%; height: 84px; border-radius: 10px;
+  display: block; width: 100%; height: 64px; border-radius: 10px;
   background: #0a0c10; border: 1px solid var(--line);
 }
 .lines { display: grid; gap: 8px; align-content: start; }
@@ -447,12 +441,38 @@ h2 em, h3 em {
 .lines .agent b { color: var(--acc); }
 .lines .agent span { color: var(--ink); }
 .viz.live .lines li { animation: fadein 0.3s var(--ease); }
-.events { display: flex; flex-wrap: wrap; gap: 6px; font-size: 11px; }
-.events li {
-  padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--dim);
-  transition: color 0.35s, border-color 0.35s, background 0.35s;
+/* agent tool calls (reuse .cc-step from cc-explain-this) + the doctor's calendar */
+.agent-run { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 12px; align-items: start; }
+.tools { display: grid; align-content: start; gap: 6px; font-size: 11px; line-height: 1.5; color: var(--mut); }
+.cal {
+  display: grid; gap: 6px; padding: 10px; border-radius: 10px; font-size: 10px; color: var(--dim);
+  background: #0a0c10; border: 1px solid var(--line);
 }
-.events li.on { color: var(--ok); border-color: rgba(127, 220, 164, 0.45); background: rgba(127, 220, 164, 0.08); }
+.cal-h { display: flex; justify-content: space-between; letter-spacing: 0.08em; text-transform: uppercase; }
+.cal-h span:first-child { color: var(--acc); }
+.cal-days { display: grid; grid-template-columns: repeat(3, 1fr); margin-left: 22px; text-align: center; color: var(--mut); }
+.cal-grid {
+  --rh: 17px; position: relative; height: calc(7 * var(--rh)); margin-left: 22px;
+  background: repeating-linear-gradient(to bottom, var(--line) 0 1px, transparent 1px var(--rh));
+}
+.cal-grid b { position: absolute; left: -22px; top: calc((var(--h) - 9) * var(--rh) - 1px); font-weight: 400; line-height: 1; }
+.ev {
+  position: absolute; display: grid; place-items: center; overflow: hidden; white-space: nowrap;
+  left: calc(var(--d) * 33.333% + 2px); width: calc(33.333% - 4px);
+  top: calc((var(--h) - 9) * var(--rh) + 1px); height: calc(var(--n, 1) * var(--rh) - 2px);
+  border: 1px solid transparent; border-radius: 4px; font-size: 9px; font-style: normal;
+  transition: opacity 0.4s, color 0.4s, border-color 0.4s, background 0.4s, box-shadow 0.4s, transform 0.4s var(--ease);
+}
+.ev.busy { background: var(--line); }
+.ev.old { color: var(--acc); background: var(--acc-soft); border-color: rgba(255, 181, 71, 0.45); }
+.ev.old.hit { box-shadow: 0 0 0 3px rgba(255, 181, 71, 0.2); }
+.ev.old.gone { opacity: 0.4; color: var(--dim); background: none; border-style: dashed; border-color: var(--line-2); box-shadow: none; text-decoration: line-through; }
+.ev.free { opacity: 0; color: var(--ok); border: 1px dashed rgba(127, 220, 164, 0.6); }
+.ev.free.on { opacity: 1; }
+.ev.free.held { color: var(--acc); border-color: var(--acc); }
+.ev.new { opacity: 0; transform: scale(0.6); color: #120d04; background: var(--acc); font-weight: 500; }
+.ev.new.on { opacity: 1; transform: none; }
+@media (max-width: 560px) { .agent-run { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- 04 GraphRAG ---------- */
 .cypher {
@@ -461,8 +481,6 @@ h2 em, h3 em {
 }
 .graph { display: block; width: 100%; height: 300px; }
 .g-foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 12px; font-size: 11px; color: var(--mut); }
-.g-ans { color: var(--acc); opacity: 0; transition: opacity 0.4s; }
-.g-ans.on { opacity: 1; }
 
 /* RAG: raw [n] from the LLM, then mapped references */
 .answer .raw {
@@ -858,6 +876,17 @@ html:not(.js) .mini-chips { display: none; }
    FOOTER
    ============================================================ */
 .foot { border-top: 1px solid var(--line); }
+
+/* Quick facts: small on purpose, but visible. FAQPage JSON-LD must match it. */
+.foot-faq { padding-block: 28px 4px; font-size: 12.5px; color: var(--mut); }
+.foot-faq .label { margin-bottom: 10px; color: var(--dim); }
+.foot-faq details { border-top: 1px solid var(--line); }
+.foot-faq summary { display: flex; gap: 10px; padding: 8px 0; cursor: pointer; list-style: none; transition: color 0.2s; }
+.foot-faq summary::-webkit-details-marker { display: none; }
+.foot-faq summary::before { content: "+"; width: 1ch; font-family: var(--mono); color: var(--dim); }
+.foot-faq details[open] summary::before { content: "\2212"; }
+.foot-faq summary:hover { color: var(--ink); }
+.foot-faq details p { max-width: 72ch; padding: 0 0 12px calc(1ch + 10px); color: var(--dim); }
 .foot-row {
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px 16px;
   padding-block: 24px; font-size: 12px; color: var(--mut);
