@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!--
-   _      _______ _______ _______ __   _ _______
-   |      |_____|    |    |______ | \  |    |
-   |_____ |     |    |    |______ |  \_|    |      SPACE
-
-        Portfolio of Utsav Paudel - ML / AI Engineer
-        https://utsavpaudel.me
--->
+<!-- Portfolio of Utsav Paudel - ML / AI Engineer - https://utsavpaudel.me -->
 <meta name="google-site-verification" content="ZEbJYnyFBVUU9wIYWU6xc_Uab5skkKEROT86mVtD4m0" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,7 +38,7 @@
 <meta name="geo.placename" content="Kathmandu">
 <meta name="geo.position" content="27.7172;85.3240">
 <meta name="ICBM" content="27.7172, 85.3240">
-<meta name="theme-color" content="#08090c">
+<meta name="theme-color" content="#ffffff">
 
 <!-- JSON-LD Structured Data (FAQ text must match the visible #faq section) -->
 <script type="application/ld+json">
@@ -172,7 +165,7 @@
         "@id": "https://utsavpaudel.me/#person"
       },
       "dateCreated": "2025-01-01T00:00:00+05:45",
-      "dateModified": "2026-10-10T00:00:00+05:45"
+      "dateModified": "2026-10-15T00:00:00+05:45"
     },
     {
       "@type": "FAQPage",
@@ -239,642 +232,397 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="./style.css?v=2026-10-10c">
+<link rel="stylesheet" href="./style.css?v=2026-10-15">
 <script>document.documentElement.classList.add('js');</script>
-<script src="./main.js?v=2026-10-10c" defer></script>
+<script src="./main.js?v=2026-10-15" defer></script>
 </head>
 <body>
 
-<a class="skip" href="#work">Skip to selected work</a>
-<div class="progress" aria-hidden="true"></div>
+<a class="skip" href="#work">Skip to the work</a>
 
-<!-- ======================= NAV ======================= -->
-<header class="nav">
-  <div class="nav-row">
-    <a class="brand" href="#top" aria-label="Utsav Paudel, back to top">
-      <svg class="logo" viewBox="0 0 40 40" aria-hidden="true">
-        <defs><linearGradient id="logoFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb547" stop-opacity=".35"/><stop offset="1" stop-color="#ffb547" stop-opacity="0"/></linearGradient></defs>
-        <rect class="logo-box" x=".5" y=".5" width="39" height="39" rx="10"/>
-        <path d="M5 31 L13.5 18 L18.5 24 L26 9 L35 31 Z" fill="url(#logoFill)"/>
-        <path class="logo-skip" d="M13.5 18 L26 9"/>
-        <path class="logo-ridge" d="M5 31 L13.5 18 L18.5 24 L26 9 L35 31"/>
-        <path class="logo-pass" pathLength="1" d="M5 31 L13.5 18 L18.5 24 L26 9"/>
-        <circle class="logo-node" cx="13.5" cy="18" r="2.2"/><circle class="logo-node" cx="18.5" cy="24" r="2.2"/>
-        <circle class="logo-halo" cx="26" cy="9" r="4.6"/><circle class="logo-top" cx="26" cy="9" r="2.8"/>
-      </svg>
-      <span class="brand-name">Utsav Paudel</span>
-    </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#work">Work</a>
-      <a href="#career">Log</a>
-      <a href="#toolkit">Stack</a>
-      <a href="#about">About</a>
-      <a class="nav-cta" href="#contact">Contact</a>
-    </nav>
-  </div>
+<header class="top">
+  <a class="mark" href="#top" aria-label="Utsav Paudel, back to top">Utsav Paudel</a>
+  <nav class="top-nav" aria-label="Primary">
+    <a href="#work">Work</a>
+    <a href="#career">Career</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
 </header>
 
 <main id="top">
 
-<!-- ======================= HERO: latent space ======================= -->
-<section class="hero">
-  <canvas class="latent" id="latent" aria-hidden="true"></canvas>
-  <div class="hud mono" aria-hidden="true">
-    <span>latent space · 900 vectors · pca 768→3</span>
-    <span id="hud-q">q → retrieval · top-6 · cos 0.91</span>
-  </div>
-
-  <div class="wrap hero-inner">
-    <p class="eyebrow mono rise" style="--d:0"><span class="live-dot"></span>ML Engineer @ Leapfrog Technology<span class="where"> · Kathmandu, Nepal</span></p>
-    <h1 class="hero-h">
-      <span class="hero-name rise" style="--d:1">Utsav Paudel</span>
-      <span class="hero-role rise" style="--d:2">Machine Learning <em>&amp; AI</em> Engineer</span>
+<!-- ======================= HERO: the page answers questions about itself ======================= -->
+<section class="hero" aria-labelledby="hero-h">
+  <div class="hero-copy">
+    <h1 id="hero-h" class="mask">
+      <span class="line"><span data-line style="--i:0">Utsav Paudel</span></span>
+      <span class="line"><span data-line style="--i:1">ML &amp; AI Engineer</span></span>
     </h1>
-    <p class="typer mono rise" style="--d:3">
-      <span class="sr-only">Building RAG pipelines, voice agents, text-to-SQL engines and GraphRAG systems.</span>
-      <span aria-hidden="true"><span class="prompt">&gt;</span> building <b id="typed">RAG pipelines</b><i class="caret"></i></span>
+    <p class="hero-sub" data-rise>Machine learning engineer and AI engineer in Kathmandu, Nepal. For 2.5 years I have shipped RAG chatbots, text-to-SQL assistants and voice agents, mostly on AWS Bedrock.</p>
+    <p class="hero-act" data-rise>
+      <a class="btn" href="#contact" data-email="paudelutsav3" data-domain="gmail.com">Email me</a>
+      <a class="link" href="./assets/Utsav_Paudel_Resume.pdf" download>Download CV</a>
     </p>
-    <p class="hero-lede rise" style="--d:4">I've spent the last 2.5 years putting LLM systems into production, mostly on AWS Bedrock. Lately that means chatbots that cite their sources and voice agents that pick up the phone.</p>
-    <div class="hero-cta rise" style="--d:5">
-      <a class="btn btn-solid" href="#work">See the work <span aria-hidden="true">↓</span></a>
-      <a class="btn" href="./assets/Utsav_Paudel_Resume.pdf" download>Download CV</a>
-    </div>
   </div>
 
-  <div class="wrap">
-    <dl class="stats rise" style="--d:6">
-      <div><dt>Years in production AI</dt><dd><b data-to="2.5" data-dec="1">2.5</b><span>+</span></dd></div>
-      <div><dt>Documents in RAG &amp; GraphRAG</dt><dd><b data-to="10">10</b><span>k+</span></dd></div>
-      <div><dt>LLM extraction accuracy</dt><dd><b data-to="95">95</b><span>%</span></dd></div>
-      <div><dt>Less scheduling overhead</dt><dd><b data-to="60">60</b><span>%</span></dd></div>
-    </dl>
+  <div class="hero-tool">
+    <div class="rt" id="ask" data-ui>
+      <p class="rt-head"><span>Ask this page</span><span class="rt-read" data-read>BM25 · in your browser</span></p>
+      <form class="rt-form" role="search" data-form>
+        <label class="sr-only" for="q">Ask a question about Utsav's work</label>
+        <input id="q" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Ask about Utsav's work" value="voice agent">
+        <button type="submit">Search</button>
+      </form>
+      <p class="rt-try" data-try>
+        <button type="button">voice agent</button>
+        <button type="button">GraphRAG accuracy</button>
+        <button type="button">where is he based</button>
+        <button type="button">which models</button>
+      </p>
+      <ol class="rt-hits" data-hits>
+        <li><a href="#voice"><b>1</b><span>Voice agent for patient calls</span><i style="--w:1"></i><em>4.12</em></a></li>
+        <li><a href="#career"><b>2</b><span>Training log</span><i style="--w:.71"></i><em>2.93</em></a></li>
+        <li><a href="#faq"><b>3</b><span>Quick answers</span><i style="--w:.44"></i><em>1.81</em></a></li>
+      </ol>
+      <p class="rt-ans" data-ans aria-live="polite">When a patient calls to move a follow-up, this agent answers, checks their insurance and books a new time.<sup><a href="#voice">1</a></sup> Voice AI agent on Nova Sonic and Twilio: 60% less scheduling overhead.<sup><a href="#career">2</a></sup></p>
+      <p class="rt-note">Keyword search over the text of this page. No LLM, and nothing leaves your browser. Each answer line cites the paragraph it came from.</p>
+    </div>
   </div>
 </section>
 
-<!-- ======================= WORK ======================= -->
-<section class="sec" id="work">
-  <div class="wrap">
-    <header class="sec-head">
-      <p class="kicker mono reveal"><span>01</span>Selected work</p>
-      <h2 class="reveal d1">Some things I've shipped <em>at work.</em></h2>
-      <p class="sec-sub reveal d2">Each panel replays what happens inside the system, step by step. The steps follow the real pipelines, but the questions and data are made up.</p>
-    </header>
+<!-- ======================= WORK: the ledger ======================= -->
+<section class="sec" id="work" aria-labelledby="work-h" data-src="Work">
+  <div class="col" data-reveal>
+    <h2 id="work-h">Shipped systems</h2>
+    <p class="intro">Four systems in production at work, and two open-source tools. Each panel below replays its pipeline step by step. The steps are real. The questions and data are made up.</p>
+    <ul class="ledger" data-rows>
+      <li><a href="#citations"><span class="l-name">Visa analytics chatbot</span><span class="l-kind">RAG with mapped citations</span><span class="l-year">2025</span></a></li>
+      <li><a href="#golend"><span class="l-name">GoLend AI assistant</span><span class="l-kind">Text-to-SQL</span><span class="l-year">2025</span></a></li>
+      <li><a href="#voice"><span class="l-name">Voice agent for patient calls</span><span class="l-kind">Voice AI</span><span class="l-year">2025</span></a></li>
+      <li><a href="#lender"><span class="l-name">Lender IQ</span><span class="l-kind">GraphRAG</span><span class="l-year">2024</span></a></li>
+      <li><a href="#explain"><span class="l-name">cc-explain-this</span><span class="l-kind">Claude Code plugin</span><span class="l-year">Open source</span></a></li>
+      <li><a href="#router"><span class="l-name">jev-router</span><span class="l-kind">Model routing proxy</span><span class="l-year">Open source</span></a></li>
+    </ul>
+  </div>
+</section>
 
-    <!-- 01 - RAG -->
-    <article class="project">
-      <div class="p-info reveal">
-        <p class="p-meta mono"><span class="p-num">01</span><span>Visas · Global staffing</span><span>2025 · Leapfrog</span></p>
-        <h3>Visa analytics chatbot</h3>
-        <p class="p-blurb">A RAG chatbot on AWS Bedrock and Claude Haiku 4.5 that answers visa questions for a global staffing team. The model never writes a link itself. It cites short IDs like [1], and once the answer is done, an <b>ID-mapping step</b> swaps each ID for the source URL stored in that chunk's metadata. So it can't make one up.</p>
-        <dl class="p-facts mono">
-          <div><dt>Role</dt><dd>Lead ML Engineer</dd></div>
-          <div><dt>Status</dt><dd>In production</dd></div>
-        </dl>
-        <ul class="chips mono"><li>AWS Bedrock</li><li>Claude Haiku 4.5</li><li>RAG</li><li>Python</li><li>FastAPI</li></ul>
-      </div>
-      <div class="viz reveal d1" data-scene="rag" aria-hidden="true">
-        <div class="viz-bar mono"><span class="viz-dots"><i></i><i></i><i></i></span><span class="viz-title">visa-analytics / rag.run</span><span class="viz-status" data-status>done · 3 sources linked</span></div>
-        <div class="viz-body">
-          <p class="ask"><span class="tag mono">Q</span><span data-q>What does an H-1B visa require?</span></p>
-          <ol class="stages mono" data-stages>
-            <li class="done">retrieve</li><li class="done">re-rank</li><li class="done">generate</li><li class="done">cite-map</li>
-          </ol>
-          <ul class="chunks mono" data-chunks>
-            <li class="cited"><span class="cid">1</span><span class="src">uscis_h1b_overview · §2</span><span class="bar"><i style="--w:.93"></i></span><span class="sc">0.93</span></li>
-            <li class="cited"><span class="cid">2</span><span class="src">dol_lca_guide · §1</span><span class="bar"><i style="--w:.88"></i></span><span class="sc">0.88</span></li>
-            <li class="cited"><span class="cid">3</span><span class="src">h1b_cap_season · §3</span><span class="bar"><i style="--w:.81"></i></span><span class="sc">0.81</span></li>
-            <li class="drop"><span class="cid"></span><span class="src">l1_visa_overview · §2</span><span class="bar"><i style="--w:.34"></i></span><span class="sc">0.34</span></li>
-            <li class="drop"><span class="cid"></span><span class="src">o1_visa_faq · §4</span><span class="bar"><i style="--w:.21"></i></span><span class="sc">0.21</span></li>
-          </ul>
-          <p class="answer" data-a data-lock>An H-1B needs a job offer in a specialty occupation<sup>1</sup> and a certified Labor Condition Application from the employer<sup>2</sup>. Most new petitions also go through the annual cap lottery<sup>3</sup>.</p>
-          <ol class="refs mono" data-refs data-lock>
-            <li><b>1</b><span>uscis.gov/…/h-1b-specialty-occupations</span></li>
-            <li><b>2</b><span>dol.gov/…/lca</span></li>
-            <li><b>3</b><span>uscis.gov/…/h-1b-cap-season</span></li>
-          </ol>
-        </div>
-      </div>
-    </article>
+<!-- ======================= CITATIONS: one answer, three states ======================= -->
+<section class="sec cite" id="citations" aria-labelledby="cite-h" data-src="Visa analytics chatbot">
+  <div class="col" data-reveal>
+    <h2 id="cite-h">Visa analytics chatbot</h2>
+    <p>A RAG chatbot on AWS Bedrock and Claude Haiku 4.5 that answers visa questions for a global staffing team. The model never writes a link itself. It cites short IDs like [1]. When the answer is done, an ID-mapping step swaps each ID for the source URL stored in that chunk's metadata. So it cannot make a link up.</p>
+    <p class="facts">Lead ML Engineer · In production · AWS Bedrock, Claude Haiku 4.5, RAG, Python, FastAPI</p>
+  </div>
 
-    <!-- 02 - Text-to-SQL -->
-    <article class="project flip">
-      <div class="p-info reveal">
-        <p class="p-meta mono"><span class="p-num">02</span><span>Fintech · Lending</span><span>2025 · Leapfrog</span></p>
-        <h3>GoLend AI assistant</h3>
-        <p class="p-blurb">Loan officers ask questions in plain English and get the answer in plain English. Amazon Nova Pro writes a read-only SQL query, runs it, and explains the result. To find the right tables it mixes <b>BM25 with pgvector search</b> (IVFFlat and HNSW indexes) and MMR re-ranking, with AWS Guardrails on top.</p>
-        <dl class="p-facts mono">
-          <div><dt>Role</dt><dd>ML Engineer</dd></div>
-          <div><dt>Impact</dt><dd>50% faster queries</dd></div>
-        </dl>
-        <ul class="chips mono"><li>Nova Pro</li><li>pgvector</li><li>BM25</li><li>HNSW</li><li>PostgreSQL</li></ul>
+  <div class="states">
+    <div class="state" data-reveal>
+      <p class="state-w">Generated</p>
+      <div class="msg" data-ui>
+        <p class="msg-q">What does an H-1B visa require?</p>
+        <p class="msg-a">An H-1B needs a job offer in a specialty occupation <span class="cid">[1]</span> and a certified Labor Condition Application from the employer <span class="cid">[2]</span>. Most new petitions also go through the annual cap lottery <span class="cid">[3]</span>.</p>
+        <p class="msg-meta">claude haiku 4.5 · 3 chunks in context · IDs only, no URLs</p>
       </div>
-      <div class="viz reveal d1" data-scene="sql" aria-hidden="true">
-        <div class="viz-bar mono"><span class="viz-dots"><i></i><i></i><i></i></span><span class="viz-title">golend / nl→sql</span><span class="viz-status" data-status>answered · 4 rows · 38 ms</span></div>
-        <div class="viz-body">
-          <p class="ask"><span class="tag mono">Q</span><span data-q>Which applicants missed their third installment?</span></p>
-          <ul class="schema mono" data-schema>
-            <li class="on">applicants</li><li class="on">loans</li><li class="on">installments</li><li>branches</li><li>payments</li><li>officers</li>
-          </ul>
-          <pre class="code mono" data-sql data-lock><span class="k">SELECT</span> a.id, l.amount, i.due_at
+    </div>
+
+    <div class="state" data-reveal>
+      <p class="state-w">Inspected</p>
+      <div class="msg is-live" data-ui data-cite>
+        <p class="msg-q">What does an H-1B visa require?</p>
+        <p class="msg-a" data-cite-a>An H-1B needs a job offer in a specialty occupation <button type="button" class="cid" data-n="1">[1]</button> and a certified Labor Condition Application from the employer <button type="button" class="cid on" data-n="2">[2]</button>. Most new petitions also go through the annual cap lottery <button type="button" class="cid" data-n="3">[3]</button>.</p>
+        <code class="msg-pop" data-cite-pop>[2] chunk dol_lca_guide §1 · score 0.88 · source_url dol.gov/…/lca</code>
+        <ol class="msg-refs" data-cite-refs></ol>
+        <p class="msg-foot"><span data-cite-hint>Point at an ID to read its chunk metadata.</span><button type="button" class="msg-btn" data-cite-map>Map citations</button></p>
+      </div>
+    </div>
+
+    <div class="state" data-reveal>
+      <p class="state-w">Mapped</p>
+      <div class="msg" data-ui>
+        <p class="msg-q">What does an H-1B visa require?</p>
+        <p class="msg-a">An H-1B needs a job offer in a specialty occupation<sup>1</sup> and a certified Labor Condition Application from the employer<sup>2</sup>. Most new petitions also go through the annual cap lottery<sup>3</sup>.</p>
+        <ol class="msg-refs">
+          <li><b>1</b>uscis.gov/…/h-1b-specialty-occupations</li>
+          <li><b>2</b>dol.gov/…/lca</li>
+          <li><b>3</b>uscis.gov/…/h-1b-cap-season</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SYSTEMS: one paragraph, one replay each ======================= -->
+<section class="sec systems" aria-labelledby="systems-h" data-src="Work">
+  <h2 id="systems-h" class="sr-only">More systems</h2>
+
+  <article class="proj col" id="golend" data-reveal>
+    <h3>GoLend AI assistant</h3>
+    <p>Loan officers ask questions in plain English and get the answer in plain English. Amazon Nova Pro writes a read-only SQL query, runs it, and explains the result. To find the right tables it mixes BM25 with pgvector search (IVFFlat and HNSW indexes) and MMR re-ranking, with AWS Guardrails on top.</p>
+    <p class="facts">ML Engineer · 50% faster queries · Nova Pro, pgvector, BM25, HNSW, PostgreSQL</p>
+    <div class="viz" data-ui data-scene="sql" aria-hidden="true">
+      <p class="viz-bar"><span class="viz-title">golend / nl→sql</span><span class="viz-status" data-status>answered · 4 rows · 38 ms</span></p>
+      <div class="viz-body">
+        <p class="ask"><span class="tag">Q</span><span data-q>Which applicants missed their third installment?</span></p>
+        <ul class="schema" data-schema>
+          <li class="on">applicants</li><li class="on">loans</li><li class="on">installments</li><li>branches</li><li>payments</li><li>officers</li>
+        </ul>
+        <pre class="code" data-sql data-lock><span class="k">SELECT</span> a.id, l.amount, i.due_at
 <span class="k">FROM</span> applicants a
 <span class="k">JOIN</span> loans l <span class="k">ON</span> l.applicant_id = a.id
 <span class="k">JOIN</span> installments i <span class="k">ON</span> i.loan_id = l.id
 <span class="k">WHERE</span> i.seq = <span class="s">3</span> <span class="k">AND</span> i.paid_at <span class="k">IS</span> <span class="k">NULL</span>
 <span class="k">ORDER</span> <span class="k">BY</span> i.due_at <span class="k">DESC</span>
 <span class="k">LIMIT</span> <span class="s">50</span>;</pre>
-          <p class="answer" data-a data-lock>Four applicants missed their third installment. The latest is APL-2291, with 420,000 due on 14 Aug 2025. The other three are APL-1873, APL-3310 and APL-0954.</p>
+        <p class="answer" data-a data-lock>Four applicants missed their third installment. The latest is APL-2291, with 420,000 due on 14 Aug 2025. The other three are APL-1873, APL-3310 and APL-0954.</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="proj col" id="voice" data-reveal>
+    <h3>Voice agent for patient calls</h3>
+    <p>When a patient calls to move a follow-up, this agent answers, checks their insurance and books a new time. It runs on Amazon Nova Sonic and Twilio. Behind it, referral documents go through Textract and Nova Pro and end up in OpenEMR. Staff now spend 60% less time on scheduling.</p>
+    <p class="facts">ML Engineer · 60% less scheduling time · Nova Sonic, Twilio, Textract, OpenEMR, AWS Lambda</p>
+    <div class="viz" data-ui data-scene="voice" aria-hidden="true">
+      <p class="viz-bar"><span class="viz-title">patient-line / call</span><span class="viz-status" data-status>ended · 00:31 · booked</span></p>
+      <div class="viz-body">
+        <canvas class="wave" data-wave></canvas>
+        <ol class="lines" data-lines data-lock>
+          <li class="agent"><b>agent</b><span>Thanks for calling. How can I help today?</span></li>
+          <li class="caller"><b>caller</b><span>Hi, I need to move my follow-up. My daughter is sick.</span></li>
+          <li class="agent"><b>agent</b><span>Sorry to hear that. Dr. Mehta has Thursday at 10 or Friday at 2. Which works?</span></li>
+          <li class="caller"><b>caller</b><span>Friday at 2, please.</span></li>
+          <li class="agent"><b>agent</b><span>Booked. I'll text the confirmation to the number on file.</span></li>
+        </ol>
+        <div class="agent-run">
+          <div class="tools" data-tools data-lock>
+            <div class="cc-step ok"><samp class="cc-call"><i>⏺</i>verify_patient(caller_id)</samp><samp class="cc-out">⎿ P-4471 · insurance active</samp></div>
+            <div class="cc-step ok"><samp class="cc-call"><i>⏺</i>find_slots(dr_mehta, 3d)</samp><samp class="cc-out">⎿ Thu 10:00 · Fri 14:00</samp></div>
+            <div class="cc-step ok"><samp class="cc-call"><i>⏺</i>book(openemr, Fri 14:00)</samp><samp class="cc-out">⎿ appt A-2093 confirmed</samp></div>
+            <div class="cc-step ok"><samp class="cc-call"><i>⏺</i>calendar.add(dr_mehta)</samp><samp class="cc-out">⎿ added Fri 14:00 · freed Wed 11:00</samp></div>
+            <div class="cc-step ok"><samp class="cc-call"><i>⏺</i>send_sms(•••0193)</samp><samp class="cc-out">⎿ confirmation delivered</samp></div>
+          </div>
+          <div class="cal" data-cal>
+            <p class="cal-h"><span>Dr. Mehta</span><span>this week</span></p>
+            <p class="cal-days"><span>Wed</span><span>Thu</span><span>Fri</span></p>
+            <div class="cal-grid">
+              <b style="--h:9">9</b><b style="--h:11">11</b><b style="--h:13">13</b><b style="--h:15">15</b>
+              <i class="ev busy" style="--d:0;--h:9;--n:2"></i><i class="ev old gone" data-ev="old" style="--d:0;--h:11">P-4471</i><i class="ev busy" style="--d:0;--h:12;--n:4"></i>
+              <i class="ev busy" style="--d:1;--h:9"></i><i class="ev free" data-ev="free" style="--d:1;--h:10">free</i><i class="ev busy" style="--d:1;--h:11;--n:5"></i>
+              <i class="ev busy" style="--d:2;--h:9;--n:5"></i><i class="ev free" data-ev="free" style="--d:2;--h:14">free</i><i class="ev new on" data-ev="new" style="--d:2;--h:14">P-4471</i><i class="ev busy" style="--d:2;--h:15"></i>
+            </div>
+          </div>
         </div>
       </div>
-    </article>
+    </div>
+  </article>
 
-    <!-- 03 - Voice -->
-    <article class="project">
-      <div class="p-info reveal">
-        <p class="p-meta mono"><span class="p-num">03</span><span>Healthcare · Voice</span><span>2025 · Leapfrog</span></p>
-        <h3>Voice agent for patient calls</h3>
-        <p class="p-blurb">When a patient calls to move a follow-up, this agent answers, checks their insurance and books a new time. It runs on Amazon Nova Sonic and Twilio. Behind it, referral documents go through Textract and Nova Pro and end up in OpenEMR. Staff now spend <b>60% less time on scheduling.</b></p>
-        <dl class="p-facts mono">
-          <div><dt>Role</dt><dd>ML Engineer</dd></div>
-          <div><dt>Impact</dt><dd>60% less overhead</dd></div>
-        </dl>
-        <ul class="chips mono"><li>Nova Sonic</li><li>Twilio</li><li>Textract</li><li>OpenEMR</li><li>AWS Lambda</li></ul>
+  <article class="proj col" id="lender" data-reveal>
+    <h3>Lender IQ (GraphRAG)</h3>
+    <p>Plain vector search struggles with questions like "which guarantors co-sign loans in three or more portfolios?" because the answer is spread over many files. We used LLMs to pull entities and relationships out of 10,000+ financial documents into Neo4j, then answered by walking the graph. Accuracy went up 40%.</p>
+    <p class="facts">ML Engineer at Fusemachines · 40% accuracy lift · Neo4j, GraphRAG, LangChain, FastAPI, GPT</p>
+    <div class="viz" data-ui data-scene="graph" aria-hidden="true">
+      <p class="viz-bar"><span class="viz-title">lender-iq / graphrag.query</span><span class="viz-status" data-status>done · 1 match · 6 edges</span></p>
+      <div class="viz-body">
+        <p class="ask"><span class="tag">Q</span><span data-q>Which guarantors co-sign loans across 3+ portfolios?</span></p>
+        <code class="cypher" data-cypher>MATCH (g:Guarantor)-[:CO_SIGNS]→(:Loan)-[:IN]→(p:Portfolio) WITH g, count(DISTINCT p) AS n WHERE n ≥ 3</code>
+        <canvas class="graph" data-graph></canvas>
+        <p class="g-foot">A applicant · G guarantor · L loan · P portfolio</p>
+        <p class="answer" data-a data-lock>G-17 is the only guarantor who co-signs loans in three or more portfolios. Its loans L-204, L-118 and L-152 are in P-retail, P-sme and P-agri.</p>
       </div>
-      <div class="viz reveal d1" data-scene="voice" aria-hidden="true">
-        <div class="viz-bar mono"><span class="viz-dots"><i></i><i></i><i></i></span><span class="viz-title">patient-line / call</span><span class="viz-status" data-status>ended · 00:31 · booked</span></div>
-        <div class="viz-body">
-          <canvas class="wave" data-wave></canvas>
-          <ol class="lines" data-lines data-lock>
-            <li class="agent"><b class="mono">agent</b><span>Thanks for calling. How can I help today?</span></li>
-            <li class="caller"><b class="mono">caller</b><span>Hi, I need to move my follow-up. My daughter is sick.</span></li>
-            <li class="agent"><b class="mono">agent</b><span>Sorry to hear that. Dr. Mehta has Thursday at 10 or Friday at 2. Which works?</span></li>
-            <li class="caller"><b class="mono">caller</b><span>Friday at 2, please.</span></li>
-            <li class="agent"><b class="mono">agent</b><span>Booked. I'll text the confirmation to the number on file.</span></li>
+    </div>
+  </article>
+
+  <article class="proj col" id="explain" data-reveal>
+    <h3><a href="https://github.com/xafold/cc-explain-this" target="_blank" rel="noopener">cc-explain-this <span aria-hidden="true">↗</span></a></h3>
+    <p>Claude Code moves fast, and some of its shell commands are hard to read at a glance. This open-source plugin adds a side pane that explains each step in one plain sentence. It flags risky steps (deletes, pushes, installs) and says why a step failed. The explanation is written after the step is done, so Claude does not slow down.</p>
+    <p class="facts">Open source, MIT · TypeScript, Claude Code plugin, Claude Haiku</p>
+    <figure class="shot">
+      <picture><source type="image/webp" srcset="./assets/explain-pane-800.webp 800w, ./assets/explain-pane-1456.webp 1456w" sizes="(max-width: 760px) 92vw, 640px"><img src="./assets/explain-pane-1456.jpg" alt="Claude Code in a terminal with the cc-explain-this pane on the right. The pane explains three Bash steps in plain sentences and marks the third one as failed." width="1456" height="812" loading="lazy" decoding="async"></picture>
+      <figcaption>The real pane in a terminal, from the project README. Below, a replay of how it works step by step.</figcaption>
+    </figure>
+    <div class="viz" data-ui data-scene="explain" aria-hidden="true">
+      <p class="viz-bar"><span class="viz-title">claude code · ~/auth-service</span><span class="viz-status" data-status>5 steps · 1 failed · 1 risky</span></p>
+      <div class="cc">
+        <div class="cc-term" data-term data-lock>
+          <samp class="cc-prompt">&gt; Make sessions last 30 minutes.</samp>
+          <div class="cc-step ok"><samp class="cc-call"><i>⏺</i>Bash(grep -rl "SESSION_TTL" src)</samp><samp class="cc-out">⎿ src/auth/session.ts</samp></div>
+          <div class="cc-step ok"><samp class="cc-call"><i>⏺</i>Update(src/auth/session.ts)</samp><samp class="cc-out"><span class="del">- TTL = 15 * 60</span><span class="add">+ TTL = 30 * 60</span></samp></div>
+          <div class="cc-step bad"><samp class="cc-call"><i>⏺</i>Bash(npm test)</samp><samp class="cc-out">⎿ 2 failed, 41 passed</samp></div>
+          <div class="cc-step ok"><samp class="cc-call"><i>⏺</i>Update(test/session.test.ts)</samp><samp class="cc-out">⎿ updated 2 lines</samp></div>
+          <div class="cc-step ok"><samp class="cc-call"><i>⏺</i>Bash(git push origin main)</samp><samp class="cc-out">⎿ main → main</samp></div>
+        </div>
+        <div class="cc-pane">
+          <p class="cc-pane-h"><span>explain this</span><span>plugin</span></p>
+          <ol class="steps" data-steps data-lock>
+            <li class="ok"><p><i>●</i><b>Bash</b></p><span>Searches the code for every file that sets the session timeout.</span></li>
+            <li class="ok"><p><i>●</i><b>Edit</b></p><span>Changes the session timeout from 15 to 30 minutes.</span></li>
+            <li class="bad"><p><i>●</i><b>Bash</b><em>failed</em></p><span>Two tests fail because the test clock still expects 15 minutes.</span></li>
+            <li class="ok"><p><i>●</i><b>Edit</b></p><span>Updates the two tests to expect the new 30-minute timeout.</span></li>
+            <li class="ok"><p><i>●</i><b>Bash</b><em>risky</em></p><span>Sends your commits to the shared main branch, where others will see them.</span></li>
           </ol>
-          <div class="agent-run">
-            <div class="tools mono" data-tools data-lock>
-              <div class="cc-step ok"><p class="cc-call"><i>⏺</i>verify_patient(caller_id)</p><p class="cc-out">⎿ P-4471 · insurance active</p></div>
-              <div class="cc-step ok"><p class="cc-call"><i>⏺</i>find_slots(dr_mehta, 3d)</p><p class="cc-out">⎿ Thu 10:00 · Fri 14:00</p></div>
-              <div class="cc-step ok"><p class="cc-call"><i>⏺</i>book(openemr, Fri 14:00)</p><p class="cc-out">⎿ appt A-2093 confirmed</p></div>
-              <div class="cc-step ok"><p class="cc-call"><i>⏺</i>calendar.add(dr_mehta)</p><p class="cc-out">⎿ added Fri 14:00 · freed Wed 11:00</p></div>
-              <div class="cc-step ok"><p class="cc-call"><i>⏺</i>send_sms(•••0193)</p><p class="cc-out">⎿ confirmation delivered</p></div>
-            </div>
-            <div class="cal mono" data-cal>
-              <p class="cal-h"><span>dr. mehta</span><span>this week</span></p>
-              <p class="cal-days"><span>Wed</span><span>Thu</span><span>Fri</span></p>
-              <div class="cal-grid">
-                <b style="--h:9">9</b><b style="--h:11">11</b><b style="--h:13">13</b><b style="--h:15">15</b>
-                <i class="ev busy" style="--d:0;--h:9;--n:2"></i><i class="ev old gone" data-ev="old" style="--d:0;--h:11">P-4471</i><i class="ev busy" style="--d:0;--h:12;--n:4"></i>
-                <i class="ev busy" style="--d:1;--h:9"></i><i class="ev free" data-ev="free" style="--d:1;--h:10">free</i><i class="ev busy" style="--d:1;--h:11;--n:5"></i>
-                <i class="ev busy" style="--d:2;--h:9;--n:5"></i><i class="ev free" data-ev="free" style="--d:2;--h:14">free</i><i class="ev new on" data-ev="new" style="--d:2;--h:14">P-4471</i><i class="ev busy" style="--d:2;--h:15"></i>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
-    </article>
+    </div>
+  </article>
 
-    <!-- 04 - GraphRAG -->
-    <article class="project flip">
-      <div class="p-info reveal">
-        <p class="p-meta mono"><span class="p-num">04</span><span>Fintech · Analytics</span><span>2024 · Fusemachines</span></p>
-        <h3>Lender IQ (GraphRAG)</h3>
-        <p class="p-blurb">Plain vector search struggles with questions like "which guarantors co-sign loans in three or more portfolios?" because the answer is spread over many files. We used LLMs to pull entities and relationships out of <b>10,000+ financial documents</b> into Neo4j, then answered by walking the graph. Accuracy went up 40%.</p>
-        <dl class="p-facts mono">
-          <div><dt>Role</dt><dd>ML Engineer</dd></div>
-          <div><dt>Impact</dt><dd>40% accuracy lift</dd></div>
-        </dl>
-        <ul class="chips mono"><li>Neo4j</li><li>GraphRAG</li><li>LangChain</li><li>FastAPI</li><li>GPT</li></ul>
+  <article class="proj col" id="router" data-reveal>
+    <h3><a href="https://github.com/xafold/jev-router" target="_blank" rel="noopener">jev-router <span aria-hidden="true">↗</span></a></h3>
+    <p>A small open-source Rust proxy that picks the model and effort level for each message you send to Claude Code. Quick questions go to Haiku, everyday work to Sonnet, and hard or risky work to Opus. It also watches the prompt cache, so it does not switch models mid-conversation when that would cost more than it saves.</p>
+    <p class="facts">Open source · Rust, LLM routing, prompt caching, Claude Code</p>
+    <figure class="shot pan">
+      <div class="pan-frame"><picture><source type="image/webp" srcset="./assets/jev-decision-800.webp 800w, ./assets/jev-decision-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 640px"><img src="./assets/jev-decision-1280.jpg" alt="The jev-router dashboard for one message. A classifier scores each signal, such as tests 0.96 and security 0.03, and a decision trace shows how it chose Sonnet 5 at high effort." width="1280" height="1400" loading="lazy" decoding="async"></picture></div>
+      <figcaption>The real dashboard for one message: the classifier's score for each signal, then the rules that picked Sonnet 5 at high effort. From the project README.</figcaption>
+    </figure>
+    <div class="viz" data-ui data-scene="router" aria-hidden="true">
+      <p class="viz-bar"><span class="viz-title">jev-router / proxy</span><span class="viz-status" data-status>→ Opus 5.5 · high · jev 0.4 s</span></p>
+      <div class="viz-body">
+        <p class="ask"><span class="tag">&gt;</span><span data-q>Rotate the prod DB password and migrate the schema.</span></p>
+        <ul class="signals" data-signals><li>type: implement</li><li>security: yes</li><li>irreversible: yes</li></ul>
+        <ol class="lanes" data-lanes>
+          <li><b>Haiku 4.5</b><span class="eff"><i></i><i></i><i></i><i></i><i></i></span><em></em></li>
+          <li><b>Sonnet 5</b><span class="eff"><i></i><i></i><i></i><i></i><i></i></span><em></em></li>
+          <li class="pick"><b>Opus 5.5</b><span class="eff"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><em>high</em></li>
+        </ol>
+        <p class="rule" data-rule>security or irreversible work → at least Opus</p>
       </div>
-      <div class="viz reveal d1" data-scene="graph" aria-hidden="true">
-        <div class="viz-bar mono"><span class="viz-dots"><i></i><i></i><i></i></span><span class="viz-title">lender-iq / graphrag.query</span><span class="viz-status" data-status>done · 1 match · 6 edges</span></div>
-        <div class="viz-body">
-          <p class="ask"><span class="tag mono">Q</span><span data-q>Which guarantors co-sign loans across 3+ portfolios?</span></p>
-          <p class="cypher mono" data-cypher>MATCH (g:Guarantor)-[:CO_SIGNS]→(:Loan)-[:IN]→(p:Portfolio) WITH g, count(DISTINCT p) AS n WHERE n ≥ 3</p>
-          <canvas class="graph" data-graph></canvas>
-          <div class="g-foot mono">
-            <span class="legend">A applicant · G guarantor · L loan · P portfolio</span>
-          </div>
-          <p class="answer" data-a data-lock>G-17 is the only guarantor who co-signs loans in three or more portfolios. Its loans L-204, L-118 and L-152 are in P-retail, P-sme and P-agri.</p>
-        </div>
-      </div>
-    </article>
+    </div>
+  </article>
+</section>
 
-    <!-- Personal projects -->
-    <header class="side-head reveal">
-      <p class="kicker mono"><span>+</span>Side projects</p>
-      <h3>Two open-source tools for <em>Claude Code.</em></h3>
-    </header>
+<!-- ======================= CAREER: training log + stack ======================= -->
+<section class="sec" id="career" aria-labelledby="career-h" data-src="Training log">
+  <div class="col" data-reveal>
+    <h2 id="career-h">Training log</h2>
+    <figure class="curve">
+      <svg viewBox="-6 30 412 186" role="img" aria-label="My career as a training-loss curve from October 2023 to today. It goes down over time, with a small bump each time a new role starts.">
+        <path class="loss" pathLength="1" d="M0 41 L8 39.6 L16 58.7 L24 69.6 L32 72.4 L40 83.5 L48 94 L56 96.8 L64 104 L72 113 L80 117.7 L88 124.1 L96 127.9 L104 138.4 L112 141.9 L120 143.4 L128 137.7 L136 147 L144 155.5 L152 160.7 L160 160.4 L168 164.3 L176 172.1 L184 171.9 L192 171.6 L200 175.5 L208 170 L216 172.4 L224 172.3 L232 182.2 L240 186.9 L248 188.6 L256 187.4 L264 191.3 L272 193.5 L280 193.9 L288 194.4 L296 196 L304 194.1 L312 196.7 L320 196.8 L328 197.1 L336 201 L344 200.8 L352 200.4 L360 201.2 L368 202.1 L376 203.3 L384 201.5 L392 204.7 L400 204.1"/>
+        <circle class="role" cx="0" cy="41" r="3.6"/><circle class="role" cx="32" cy="72.4" r="3.6"/><circle class="role" cx="120" cy="143.4" r="3.6"/><circle class="role" cx="208" cy="170" r="3.6"/>
+        <circle class="now-ring" cx="400" cy="204.1" r="7"/><circle class="now" cx="400" cy="204.1" r="3.6"/>
+      </svg>
+      <p class="curve-x" aria-hidden="true"><span style="--x:33">2024</span><span style="--x:166">2025</span><span style="--x:300">2026</span></p>
+      <figcaption>My career plotted as a training-loss curve. Each new role bumps it up a little before it settles. The red point is today.</figcaption>
+    </figure>
 
-    <div class="side-grid">
-      <article class="side reveal">
-        <div class="viz" data-scene="explain" aria-hidden="true">
-          <div class="viz-bar mono"><span class="viz-dots"><i></i><i></i><i></i></span><span class="viz-title">claude code · ~/auth-service</span><span class="viz-status" data-status>5 steps · 1 failed · 1 risky</span></div>
-          <div class="cc">
-            <div class="cc-term mono" data-term data-lock>
-              <p class="cc-prompt">&gt; Make sessions last 30 minutes.</p>
-              <div class="cc-step ok"><p class="cc-call"><i>⏺</i>Bash(grep -rl "SESSION_TTL" src)</p><p class="cc-out">⎿ src/auth/session.ts</p></div>
-              <div class="cc-step ok"><p class="cc-call"><i>⏺</i>Update(src/auth/session.ts)</p><p class="cc-out"><span class="del">- TTL = 15 * 60</span><span class="add">+ TTL = 30 * 60</span></p></div>
-              <div class="cc-step bad"><p class="cc-call"><i>⏺</i>Bash(npm test)</p><p class="cc-out">⎿ 2 failed, 41 passed</p></div>
-              <div class="cc-step ok"><p class="cc-call"><i>⏺</i>Update(test/session.test.ts)</p><p class="cc-out">⎿ updated 2 lines</p></div>
-              <div class="cc-step ok"><p class="cc-call"><i>⏺</i>Bash(git push origin main)</p><p class="cc-out">⎿ main → main</p></div>
-            </div>
-            <div class="cc-pane">
-              <p class="cc-pane-h mono"><span>explain this</span><span>plugin</span></p>
-              <ol class="steps" data-steps data-lock>
-                <li class="ok"><p class="mono"><i>✓</i><b>Bash</b></p><span>Searches the code for every file that sets the session timeout.</span></li>
-                <li class="ok"><p class="mono"><i>✓</i><b>Edit</b></p><span>Changes the session timeout from 15 to 30 minutes.</span></li>
-                <li class="bad"><p class="mono"><i>✗</i><b>Bash</b><em class="lbl-fail">failed</em></p><span>Two tests fail because the test clock still expects 15 minutes.</span></li>
-                <li class="ok"><p class="mono"><i>✓</i><b>Edit</b></p><span>Updates the two tests to expect the new 30-minute timeout.</span></li>
-                <li class="ok"><p class="mono"><i>✓</i><b>Bash</b><em class="lbl-risk">risky</em></p><span>Sends your commits to the shared main branch, where others will see them.</span></li>
-              </ol>
-            </div>
-          </div>
-        </div>
-        <div class="side-info">
-          <h4><a href="https://github.com/xafold/cc-explain-this" target="_blank" rel="noopener">cc-explain-this <span aria-hidden="true">↗</span></a></h4>
-          <p>Claude Code moves fast, and some of its shell commands are hard to read at a glance. This plugin adds a side pane that explains each step in one plain sentence. It flags risky steps (deletes, pushes, installs) and says why a step failed. The explanation is written after the step is done, so Claude doesn't slow down.</p>
-          <ul class="chips mono"><li>TypeScript</li><li>Claude Code plugin</li><li>Claude Haiku</li><li>MIT</li></ul>
-        </div>
-      </article>
+    <div class="rows" data-rows>
+      <p class="grp">Leapfrog Technology, Kathmandu</p>
+      <ul>
+        <li class="role"><span class="nm">Machine Learning Engineer</span><span class="val">May 2025 – now</span></li>
+        <li><span class="nm">Visa analytics chatbot: 4-stage RAG with ID-mapped citations</span><span class="val">Bedrock, Claude</span></li>
+        <li><span class="nm">GoLend AI: text-to-SQL on Amazon Nova Pro and pgvector</span><span class="val">50% faster</span></li>
+        <li><span class="nm">Voice AI agent on Nova Sonic and Twilio</span><span class="val">60% less overhead</span></li>
+        <li><span class="nm">Patient-referral pipeline: Textract, Nova Pro, OpenEMR</span><span class="val">Lambda</span></li>
+      </ul>
+      <p class="grp">Fusemachines</p>
+      <ul>
+        <li class="role"><span class="nm">Associate ML Engineer</span><span class="val">Sep 2024 – May 2025</span></li>
+        <li><span class="nm">RAG and GraphRAG over 10,000+ financial documents</span><span class="val">+40% accuracy</span></li>
+        <li><span class="nm">LLM extraction pipelines with GPT and Gemini</span><span class="val">95% accuracy</span></li>
+        <li><span class="nm">Retrieval optimisation</span><span class="val">50% less query time</span></li>
+      </ul>
+      <p class="grp">E.K. Solutions</p>
+      <ul>
+        <li class="role"><span class="nm">Associate ML Engineer</span><span class="val">Jan – Jun 2024</span></li>
+        <li><span class="nm">5+ ML APIs on FastAPI and PyTorch</span><span class="val">1,000+ requests a day</span></li>
+        <li><span class="nm">Chain-of-Thought prompt engineering</span><span class="val">+25% LLM accuracy</span></li>
+        <li><span class="nm">Transformer inference, 20% less memory</span><span class="val">35% faster</span></li>
+        <li class="role"><span class="nm">ML Engineer Trainee</span><span class="val">Oct 2023 – Jan 2024</span></li>
+        <li><span class="nm">Trained models and built NLP and computer-vision prototypes</span><span class="val">PyTorch, OpenCV</span></li>
+      </ul>
+      <p class="grp">Education</p>
+      <ul>
+        <li class="role"><span class="nm">Bachelor in Computer Engineering, Kantipur Engineering College</span><span class="val">2017 – 2022</span></li>
+      </ul>
+    </div>
 
-      <article class="side reveal d1">
-        <div class="viz" data-scene="router" aria-hidden="true">
-          <div class="viz-bar mono"><span class="viz-dots"><i></i><i></i><i></i></span><span class="viz-title">jev-router / proxy</span><span class="viz-status" data-status>→ Opus 5.5 · high · jev 0.4 s</span></div>
-          <div class="viz-body">
-            <p class="ask"><span class="tag mono">❯</span><span data-q>Rotate the prod DB password and migrate the schema.</span></p>
-            <ul class="signals mono" data-signals><li>type: implement</li><li>security ✓</li><li>irreversible ✓</li></ul>
-            <ol class="lanes mono" data-lanes>
-              <li><b>Haiku 4.5</b><span class="eff"><i></i><i></i><i></i><i></i><i></i></span><em></em></li>
-              <li><b>Sonnet 5</b><span class="eff"><i></i><i></i><i></i><i></i><i></i></span><em></em></li>
-              <li class="pick"><b>Opus 5.5</b><span class="eff"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><em>high</em></li>
-            </ol>
-            <p class="rule mono" data-rule>security or irreversible work → at least Opus</p>
-          </div>
-        </div>
-        <div class="side-info">
-          <h4><a href="https://github.com/xafold/jev-router" target="_blank" rel="noopener">jev-router <span aria-hidden="true">↗</span></a></h4>
-          <p>A small Rust proxy that picks the model and effort level for each message you send to Claude Code. Quick questions go to Haiku, everyday work to Sonnet, and hard or risky work to Opus. It also watches the prompt cache, so it won't switch models mid-conversation when that would cost more than it saves.</p>
-          <ul class="chips mono"><li>Rust</li><li>LLM routing</li><li>Prompt caching</li><li>Claude Code</li></ul>
-        </div>
-      </article>
+    <h3 id="toolkit" class="sub-h">Tools I use</h3>
+    <ul class="rows tools-list" data-rows>
+      <li><span class="nm">PyTorch, LangChain, LangGraph, LangSmith, CrewAI, Google ADK, OpenCV</span><span class="val">ML</span></li>
+      <li><span class="nm">Claude, Amazon Nova, Nova Sonic, GPT, Gemini</span><span class="val">Models</span></li>
+      <li><span class="nm">AWS Bedrock, Lambda, EC2, SQS, SNS, Vertex AI</span><span class="val">Cloud</span></li>
+      <li><span class="nm">PostgreSQL with pgvector, Neo4j, MongoDB, SQLite</span><span class="val">Data</span></li>
+      <li><span class="nm">FastAPI, Django, Django REST</span><span class="val">Serving</span></li>
+      <li><span class="nm">Docker, MLflow, Redis, Celery, Alembic</span><span class="val">Infra</span></li>
+      <li><span class="nm">Python, SQL, C++</span><span class="val">Languages</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= ABOUT: a letter ======================= -->
+<section class="sec letter" id="about" aria-labelledby="about-h" data-src="About">
+  <div class="col" data-reveal>
+    <h2 id="about-h" class="sr-only">About Utsav</h2>
+    <img class="face" src="./assets/utsav-portrait-480.webp" width="88" height="88" alt="Utsav Paudel in a cap and trekking jacket, with a snowy peak behind" loading="lazy" decoding="async">
+    <p>Hi, I'm Utsav. I'm a machine learning engineer and AI engineer in Kathmandu, Nepal. Most of my work is getting LLM systems to behave once real people start using them.</p>
+    <p>I like projects where one kind of input turns into another: a phone call that ends up as a database row, or a pile of PDFs you can ask questions.</p>
+    <p>These days I'm at Leapfrog Technology, working mostly with AWS Bedrock, Claude and Amazon Nova. Before that I was at Fusemachines and E.K. Solutions. There I learned retrieval and prompt engineering, and spent a lot of time making transformer models cheaper to run.</p>
+    <p>Outside work I'm usually on a trail. Langtang and Kori are in the photos below. They are about a day's drive from home, and I take far too many mountain pictures.</p>
+    <p>If you have a messy problem with no obvious answer yet, I'd like to hear about it.</p>
+    <p class="sign">Utsav Paudel</p>
+    <p class="sign-role">Machine Learning Engineer, Leapfrog Technology · Koteshwor, Kathmandu</p>
+  </div>
+</section>
+
+<!-- ======================= GALLERY: small frames, wide space ======================= -->
+<section class="gallery" aria-labelledby="gal-h">
+  <h2 id="gal-h" class="gal-title">Langtang and Kori, 5</h2>
+  <div class="strip" tabindex="0" role="region" aria-label="Photos from Langtang and Kori. Scroll sideways for more.">
+    <figure class="frame"><picture><source type="image/webp" srcset="./assets/glacier-800.webp 800w, ./assets/glacier-1200.webp 1200w" sizes="(max-width: 760px) 34vw, 11vw"><img src="./assets/glacier-1600.jpg" alt="Utsav Paudel standing small below a glacier in Langtang, Nepal" width="1600" height="1069" loading="lazy" decoding="async" style="--pos:38% 50%"></picture></figure>
+    <figure class="frame"><picture><source type="image/webp" srcset="./assets/trek-langtang-800.webp 800w, ./assets/trek-langtang-1200.webp 1200w" sizes="(max-width: 760px) 34vw, 11vw"><img src="./assets/trek-langtang-1200.jpg" alt="Utsav Paudel trekking in Langtang, Nepal, with a backpack and poles, looking up at snow peaks" width="1200" height="676" loading="lazy" decoding="async" style="--pos:30% 50%"></picture></figure>
+    <figure class="frame"><picture><source type="image/webp" srcset="./assets/nepal-flag-480.webp 480w, ./assets/nepal-flag-800.webp 800w" sizes="(max-width: 760px) 34vw, 11vw"><img src="./assets/nepal-flag-800.webp" alt="Utsav Paudel holding the flag of Nepal at Kori, with Himalayan peaks behind" width="800" height="1067" loading="lazy" decoding="async"></picture></figure>
+    <figure class="frame"><picture><source type="image/webp" srcset="./assets/utsav-portrait-480.webp 480w, ./assets/utsav-portrait-800.webp 800w" sizes="(max-width: 760px) 34vw, 11vw"><img src="./assets/utsav-portrait-1200.jpg" alt="Portrait of Utsav Paudel in Langtang with a snowy peak behind" width="1200" height="1500" loading="lazy" decoding="async"></picture></figure>
+    <figure class="frame"><picture><source type="image/webp" srcset="./assets/mountain-portrait-800.webp 800w, ./assets/mountain-portrait-1200.webp 1200w" sizes="(max-width: 760px) 34vw, 11vw"><img src="./assets/mountain-portrait-1200.jpg" alt="Utsav Paudel in a cream sweater on a ridge, with Himalayan peaks behind" width="1200" height="675" loading="lazy" decoding="async" style="--pos:54% 50%"></picture></figure>
+  </div>
+</section>
+
+<!-- ======================= FAQ (text must match the FAQPage JSON-LD) ======================= -->
+<section class="sec" id="faq" aria-labelledby="faq-h" data-src="Quick answers">
+  <div class="col" data-reveal>
+    <h2 id="faq-h">Quick answers</h2>
+    <div class="faq">
+      <p><strong>Who is Utsav Paudel?</strong> Utsav Paudel is a Machine Learning Engineer and AI Engineer based in Kathmandu, Nepal. He has 2.5+ years of experience building Generative AI systems, RAG pipelines, LLM applications and Voice AI agents, mostly on AWS Bedrock. He works at Leapfrog Technology.</p>
+      <p><strong>Who is a Machine Learning Engineer or AI Engineer in Nepal?</strong> Utsav Paudel is a Machine Learning Engineer and AI Engineer in Kathmandu, Nepal. He builds production LLM systems for fintech and healthcare clients: RAG chatbots, text-to-SQL assistants, GraphRAG systems and voice agents. He is open to consulting and collaboration.</p>
+      <p><strong>What has Utsav Paudel built?</strong> A visa analytics RAG chatbot on AWS Bedrock and Claude Haiku 4.5. GoLend AI, a text-to-SQL assistant on Amazon Nova Pro and pgvector. A voice agent for patient calls on Amazon Nova Sonic and Twilio that cut scheduling time by 60%. Lender IQ, a GraphRAG system over 10,000+ financial documents. He also maintains two open-source Claude Code tools, cc-explain-this and jev-router.</p>
+      <p><strong>What is Utsav Paudel's tech stack?</strong> Python, PyTorch, LangChain, LangGraph, FastAPI, AWS Bedrock, AWS Lambda, Claude, Amazon Nova, GPT, Gemini, PostgreSQL with pgvector, and Neo4j.</p>
+      <p><strong>Where did Utsav Paudel study and work?</strong> He has a Bachelor in Computer Engineering from Kantipur Engineering College, Kathmandu (2017–2022). He worked at E.K. Solutions and Fusemachines before he joined Leapfrog Technology in May 2025.</p>
+      <p><strong>How can I contact or hire Utsav Paudel?</strong> Use the contact section on this page, or send a message on LinkedIn (linkedin.com/in/utshabpaudell). He is open to consulting and collaboration on LLM, RAG and voice AI projects.</p>
     </div>
   </div>
 </section>
 
-<!-- ======================= CAREER: training log ======================= -->
-<section class="sec" id="career">
-  <div class="wrap">
-    <header class="sec-head">
-      <p class="kicker mono reveal"><span>02</span>Training log</p>
-      <h2 class="reveal d1">Where I've worked <em>so far.</em></h2>
-      <p class="sec-sub reveal d2">Plotted as a loss curve, because I couldn't help it. Every new job bumps it up a little before it settles.</p>
-    </header>
-
-    <div class="log">
-      <figure class="curve reveal">
-        <figcaption class="mono"><span>train/loss</span><span class="run"><i></i>run: career · still training</span></figcaption>
-        <svg viewBox="-24 0 448 252" role="img" aria-label="A loss curve from October 2023 to today. It goes down over time, with small spikes when a new role starts.">
-          <defs><linearGradient id="lossGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb547" stop-opacity=".22"/><stop offset="1" stop-color="#ffb547" stop-opacity="0"/></linearGradient></defs>
-          <g class="grid">
-            <line x1="0" y1="60" x2="400" y2="60"/><line x1="0" y1="120" x2="400" y2="120"/><line x1="0" y1="180" x2="400" y2="180"/>
-            <line class="axis" x1="0" y1="226" x2="400" y2="226"/>
-          </g>
-          <g class="epochs-m">
-            <line x1="0" y1="20" x2="0" y2="226"/><line x1="33" y1="20" x2="33" y2="226"/><line x1="122" y1="20" x2="122" y2="226"/><line x1="211" y1="20" x2="211" y2="226"/>
-            <text x="3" y="16">e1</text><text x="36" y="16">e2</text><text x="125" y="16">e3</text><text x="214" y="16">e4</text>
-          </g>
-          <g class="ticks">
-            <text x="0" y="242">2023</text><text x="33" y="242">2024</text><text x="166" y="242">2025</text><text x="300" y="242">2026</text>
-          </g>
-          <path class="loss-fill" d="M0 41 L8 39.6 L16 58.7 L24 69.6 L32 72.4 L40 83.5 L48 94 L56 96.8 L64 104 L72 113 L80 117.7 L88 124.1 L96 127.9 L104 138.4 L112 141.9 L120 143.4 L128 137.7 L136 147 L144 155.5 L152 160.7 L160 160.4 L168 164.3 L176 172.1 L184 171.9 L192 171.6 L200 175.5 L208 170 L216 172.4 L224 172.3 L232 182.2 L240 186.9 L248 188.6 L256 187.4 L264 191.3 L272 193.5 L280 193.9 L288 194.4 L296 196 L304 194.1 L312 196.7 L320 196.8 L328 197.1 L336 201 L344 200.8 L352 200.4 L360 201.2 L368 202.1 L376 203.3 L384 201.5 L392 204.7 L400 204.1 L400 226 L0 226 Z"/>
-          <path class="loss" pathLength="1" d="M0 41 L8 39.6 L16 58.7 L24 69.6 L32 72.4 L40 83.5 L48 94 L56 96.8 L64 104 L72 113 L80 117.7 L88 124.1 L96 127.9 L104 138.4 L112 141.9 L120 143.4 L128 137.7 L136 147 L144 155.5 L152 160.7 L160 160.4 L168 164.3 L176 172.1 L184 171.9 L192 171.6 L200 175.5 L208 170 L216 172.4 L224 172.3 L232 182.2 L240 186.9 L248 188.6 L256 187.4 L264 191.3 L272 193.5 L280 193.9 L288 194.4 L296 196 L304 194.1 L312 196.7 L320 196.8 L328 197.1 L336 201 L344 200.8 L352 200.4 L360 201.2 L368 202.1 L376 203.3 L384 201.5 L392 204.7 L400 204.1"/>
-          <circle class="now-ring" cx="400" cy="204.1" r="7"/>
-          <circle class="now" cx="400" cy="204.1" r="3.2"/>
-        </svg>
-      </figure>
-
-      <ol class="epochs">
-        <li class="epoch now reveal">
-          <p class="ep-when mono"><span class="ep-tag">epoch 04</span>May 2025 – present</p>
-          <h3>Machine Learning Engineer</h3>
-          <p class="ep-co">Leapfrog Technology Pvt. Ltd. · Kathmandu, Nepal</p>
-          <ul class="ep-pts">
-            <li>Visa Analytics Chatbot on AWS Bedrock + Claude Haiku 4.5: <b>4-stage RAG</b> with ID-mapping citations.</li>
-            <li>GoLend AI: text-to-SQL on Amazon Nova Pro + PostgreSQL pgvector.</li>
-            <li>Voice AI agent on Nova Sonic + Twilio: <b>60% less scheduling overhead</b>.</li>
-            <li>Automated patient-referral pipeline: Textract → Nova Pro → OpenEMR.</li>
-          </ul>
-          <ul class="chips mono"><li>Bedrock</li><li>Nova Pro</li><li>Nova Sonic</li><li>Twilio</li><li>Lambda</li></ul>
-        </li>
-        <li class="epoch reveal">
-          <p class="ep-when mono"><span class="ep-tag">epoch 03</span>Sep 2024 – May 2025</p>
-          <h3>Associate ML Engineer</h3>
-          <p class="ep-co">Fusemachines Pvt. Ltd.</p>
-          <ul class="ep-pts">
-            <li>RAG &amp; GraphRAG systems with a <b>40% accuracy improvement</b> across 10,000+ financial documents.</li>
-            <li>LLM extraction pipelines (GPT, Gemini) reaching <b>95% accuracy</b>.</li>
-            <li>Retrieval optimization that cut <b>query time by 50%</b>.</li>
-          </ul>
-          <ul class="chips mono"><li>Neo4j</li><li>LangChain</li><li>GPT</li><li>Gemini</li><li>Python</li></ul>
-        </li>
-        <li class="epoch reveal">
-          <p class="ep-when mono"><span class="ep-tag">epoch 02</span>Jan 2024 – Jun 2024</p>
-          <h3>Associate ML Engineer</h3>
-          <p class="ep-co">E.K. Solutions Pvt. Ltd.</p>
-          <ul class="ep-pts">
-            <li><b>5+ scalable ML APIs</b> on FastAPI + PyTorch serving 1,000+ daily requests.</li>
-            <li><b>25% LLM accuracy lift</b> with Chain-of-Thought prompt engineering.</li>
-            <li><b>35% faster transformer inference</b> with 20% less memory.</li>
-          </ul>
-          <ul class="chips mono"><li>FastAPI</li><li>PyTorch</li><li>Docker</li><li>Redis</li></ul>
-        </li>
-        <li class="epoch reveal">
-          <p class="ep-when mono"><span class="ep-tag">epoch 01</span>Oct 2023 – Jan 2024</p>
-          <h3>ML Engineer Trainee</h3>
-          <p class="ep-co">E.K. Solutions Pvt. Ltd.</p>
-          <ul class="ep-pts">
-            <li>Trained ML models and built the pipelines around them.</li>
-            <li>Built NLP and computer-vision prototypes.</li>
-          </ul>
-          <ul class="chips mono"><li>PyTorch</li><li>OpenCV</li><li>NumPy</li></ul>
-        </li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= STACK ======================= -->
-<section class="sec" id="toolkit">
-  <div class="wrap">
-    <header class="sec-head">
-      <p class="kicker mono reveal"><span>03</span>Stack</p>
-      <h2 class="reveal d1">The tools I <em>actually use.</em></h2>
-    </header>
-
-    <div class="stack reveal d2">
-      <div class="cell wide">
-        <p class="cat mono"><span>ai / ml</span><em>07</em></p>
-        <ul><li class="hot">PyTorch</li><li class="hot">LangChain</li><li>LangGraph</li><li>LangSmith</li><li>CrewAI</li><li>Google ADK</li><li>OpenCV</li></ul>
-      </div>
-      <div class="cell">
-        <p class="cat mono"><span>models</span><em>05</em></p>
-        <ul><li class="hot">Claude</li><li class="hot">Amazon Nova</li><li>Nova Sonic</li><li>GPT</li><li>Gemini</li></ul>
-      </div>
-      <div class="cell">
-        <p class="cat mono"><span>languages</span><em>03</em></p>
-        <ul><li class="hot">Python</li><li>SQL</li><li>C++</li></ul>
-      </div>
-      <div class="cell">
-        <p class="cat mono"><span>serving</span><em>03</em></p>
-        <ul><li class="hot">FastAPI</li><li>Django</li><li>Django REST</li></ul>
-      </div>
-      <div class="cell">
-        <p class="cat mono"><span>data</span><em>04</em></p>
-        <ul><li class="hot">PostgreSQL · pgvector</li><li>Neo4j</li><li>MongoDB</li><li>SQLite</li></ul>
-      </div>
-      <div class="cell">
-        <p class="cat mono"><span>cloud</span><em>06</em></p>
-        <ul><li class="hot">AWS Bedrock</li><li>Lambda</li><li>EC2</li><li>SQS</li><li>SNS</li><li>Vertex AI</li></ul>
-      </div>
-      <div class="cell">
-        <p class="cat mono"><span>infra</span><em>05</em></p>
-        <ul><li>Docker</li><li>MLFlow</li><li>Redis</li><li>Celery</li><li>Alembic</li></ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= ABOUT ======================= -->
-<section class="sec" id="about">
-  <div class="wrap">
-    <header class="sec-head">
-      <p class="kicker mono reveal"><span>04</span>About</p>
-      <h2 class="reveal d1">Hi, I'm <em>Utsav.</em></h2>
-    </header>
-
-    <div class="about">
-      <figure class="photo about-photo reveal">
-        <picture>
-          <source type="image/webp" srcset="./assets/utsav-portrait-480.webp 480w, ./assets/utsav-portrait-800.webp 800w, ./assets/utsav-portrait-1200.webp 1200w" sizes="(max-width: 900px) 92vw, 460px">
-          <img src="./assets/utsav-portrait-1200.jpg" alt="Portrait of Utsav Paudel, Machine Learning Engineer from Nepal, in Langtang with a snowy peak behind" width="1200" height="1500" loading="lazy" decoding="async">
-        </picture>
-        <figcaption class="mono">Langtang, Nepal</figcaption>
-      </figure>
-
-      <div class="about-text reveal d1">
-        <p class="lead">I'm a machine learning engineer and AI engineer in Kathmandu, Nepal. Most of my work is getting LLM systems to behave once real people start using them.</p>
-        <p>I like projects where one kind of input turns into another: a phone call that ends up as a database row, or a pile of PDFs you can ask questions.</p>
-        <p>These days I'm at Leapfrog Technology. I work mostly with AWS Bedrock, Claude and Amazon Nova. Before that I was at Fusemachines and E.K. Solutions, where I learned retrieval and prompt engineering, and spent a lot of time making transformer models cheaper to run.</p>
-        <p>Outside work I'm usually on a trail. Langtang and Kori are in the photos below, and I take far too many mountain pictures. If you have a messy problem with no obvious answer yet, I'd like to hear about it.</p>
-        <dl class="facts mono">
-          <div><dt>Based</dt><dd>Koteshwor, Kathmandu</dd></div>
-          <div><dt>Now</dt><dd>Leapfrog Technology</dd></div>
-          <div><dt>Focus</dt><dd>GenAI · RAG · Voice</dd></div>
-          <div><dt>Open to</dt><dd>Consults &amp; collabs</dd></div>
-        </dl>
-      </div>
-    </div>
-  </div>
-
-  <figure class="plate">
-    <picture>
-      <source type="image/webp" srcset="./assets/glacier-800.webp 800w, ./assets/glacier-1200.webp 1200w, ./assets/glacier-1600.webp 1600w" sizes="100vw">
-      <img src="./assets/glacier-1600.jpg" alt="Utsav Paudel standing small below a glacier in Langtang, Nepal" width="1600" height="1069" loading="lazy" decoding="async">
-    </picture>
-    <figcaption>
-      <p>That's me, <em>the small one in the middle.</em></p>
-      <span class="mono">Langtang, Nepal</span>
-    </figcaption>
-  </figure>
-
-  <div class="wrap">
-    <div class="film">
-      <figure class="photo reveal">
-        <picture>
-          <source type="image/webp" srcset="./assets/trek-langtang-800.webp 800w, ./assets/trek-langtang-1200.webp 1200w, ./assets/trek-langtang-1600.webp 1600w" sizes="(max-width: 760px) 92vw, 45vw">
-          <img src="./assets/trek-langtang-1200.jpg" alt="Utsav Paudel trekking in Langtang, Nepal, with a backpack and poles, looking up at snow peaks" width="1200" height="676" loading="lazy" decoding="async">
-        </picture>
-        <figcaption class="mono">Langtang, Nepal</figcaption>
-      </figure>
-      <figure class="photo reveal d1">
-        <picture>
-          <source type="image/webp" srcset="./assets/nepal-flag-480.webp 480w, ./assets/nepal-flag-800.webp 800w" sizes="(max-width: 760px) 46vw, 25vw">
-          <img src="./assets/nepal-flag-800.webp" alt="Utsav Paudel holding the flag of Nepal at Kori, with Himalayan peaks behind" width="800" height="1067" loading="lazy" decoding="async">
-        </picture>
-        <figcaption class="mono">Kori, Nepal</figcaption>
-      </figure>
-      <blockquote class="film-quote reveal d2">
-        <p>Home is Kathmandu. The trails in these photos are about <em>a day's drive</em> from there.</p>
-        <span class="mono">Kathmandu, Nepal</span>
-      </blockquote>
-    </div>
-
-    <!-- Interactive figurine -->
-    <div class="mini reveal" id="mini">
-      <div class="mini-copy">
-        <p class="kicker mono"><span>✦</span>Interactive</p>
-        <h3>Say hi to <em>mini-me.</em></h3>
-        <p>It's a scripted bot, so it only knows the few answers I wrote for it. Ask it something, or click the cap if you want it in sunglasses.</p>
-        <div class="mini-chips" role="group" aria-label="Ask mini-Utsav a question">
-          <button type="button" data-ask="build">What do you build?</button>
-          <button type="button" data-ask="rag">RAG in one line?</button>
-          <button type="button" data-ask="stack">Favourite stack?</button>
-          <button type="button" data-ask="where">Where are you based?</button>
-          <button type="button" data-ask="hire">Can I hire you?</button>
-          <button type="button" data-ask="joke">Tell me an ML joke</button>
-          <button type="button" data-act="shades" aria-pressed="false">Put on the shades</button>
-        </div>
-      </div>
-
-      <div class="mini-stage">
-        <p class="bubble" data-say aria-hidden="true">Hey! I'm the small version of Utsav. Ask me something, or poke my cap.</p>
-        <p class="sr-only" data-live aria-live="polite"></p>
-        <button class="mini-fig" type="button" aria-label="Wave at mini-Utsav">
-          <svg viewBox="0 0 300 380" role="img" aria-label="Illustrated figurine of Utsav: grey cap with mirrored sunglasses, sage and black jacket, standing on a small pedestal">
-            <defs>
-              <linearGradient id="fMirror" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#2dd4bf"/><stop offset=".5" stop-color="#3b6fe0"/><stop offset="1" stop-color="#34d399"/>
-              </linearGradient>
-              <linearGradient id="fSkin" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#c08a66"/><stop offset="1" stop-color="#a87352"/>
-              </linearGradient>
-              <linearGradient id="fJacket" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#8ea292"/><stop offset=".5" stop-color="#a5b8a8"/><stop offset="1" stop-color="#8ea292"/>
-              </linearGradient>
-              <radialGradient id="fSpot" cx=".5" cy=".5" r=".5">
-                <stop offset="0" stop-color="#ffb547" stop-opacity=".45"/><stop offset="1" stop-color="#ffb547" stop-opacity="0"/>
-              </radialGradient>
-            </defs>
-
-            <!-- pedestal -->
-            <ellipse cx="150" cy="366" rx="104" ry="10" fill="#000" opacity=".55"/>
-            <path d="M60 330 V348 A90 14 0 0 0 240 348 V330 Z" fill="#14171d"/>
-            <ellipse cx="150" cy="330" rx="90" ry="14" fill="#1f232b" stroke="#2d323c"/>
-            <ellipse class="f-ring" cx="150" cy="330" rx="74" ry="11" fill="url(#fSpot)"/>
-            <text class="f-plate" x="150" y="354" text-anchor="middle">UTSAV · ML ENGINEER</text>
-
-            <g class="f-bob">
-              <!-- legs + shoes -->
-              <rect x="124" y="288" width="22" height="36" rx="6" fill="#191c23"/>
-              <rect x="154" y="288" width="22" height="36" rx="6" fill="#191c23"/>
-              <path d="M114 331 Q114 318 128 318 H146 V331 Z" fill="#0d0f13"/>
-              <path d="M186 331 Q186 318 172 318 H154 V331 Z" fill="#0d0f13"/>
-
-              <g class="f-body">
-                <rect x="138" y="190" width="24" height="32" rx="8" fill="#9c6849"/>
-                <!-- jacket: sage front, dark sides, hood collar -->
-                <path d="M100 300 L96 244 Q96 222 118 218 L182 218 Q204 222 204 244 L200 300 Q150 308 100 300 Z" fill="url(#fJacket)"/>
-                <path d="M96 244 Q96 222 118 218 L132 218 Q120 236 118 302 L100 300 Z" fill="#1d212a"/>
-                <path d="M204 244 Q204 222 182 218 L168 218 Q180 236 182 302 L200 300 Z" fill="#1d212a"/>
-                <path d="M150 226 V305" stroke="#6d8072" stroke-width="1.6"/>
-                <path d="M118 220 Q150 242 182 220 L178 204 Q150 224 122 204 Z" fill="#1d212a"/>
-                <!-- left arm -->
-                <path d="M104 228 Q88 252 92 284" stroke="#1d212a" stroke-width="22" stroke-linecap="round" fill="none"/>
-                <circle cx="92" cy="292" r="10" fill="url(#fSkin)"/>
-              </g>
-
-              <g class="f-head">
-                <ellipse cx="89" cy="142" rx="9" ry="13" fill="#a87352"/>
-                <ellipse cx="211" cy="142" rx="9" ry="13" fill="#a87352"/>
-                <ellipse cx="150" cy="136" rx="62" ry="66" fill="url(#fSkin)"/>
-                <!-- hair at temples, stubble, goatee -->
-                <path d="M90 104 Q86 126 94 144 L99 112 Z" fill="#1c1512"/>
-                <path d="M210 104 Q214 126 206 144 L201 112 Z" fill="#1c1512"/>
-                <path d="M94 150 Q102 198 150 203 Q198 198 206 150 Q194 184 150 188 Q106 184 94 150 Z" fill="#3a2a22" opacity=".28"/>
-                <ellipse cx="150" cy="193" rx="11" ry="6" fill="#2a1d17" opacity=".5"/>
-                <g class="f-brows" fill="#1c1512">
-                  <rect x="111" y="120" width="26" height="5.5" rx="2.75" transform="rotate(-4 124 123)"/>
-                  <rect x="163" y="120" width="26" height="5.5" rx="2.75" transform="rotate(4 176 123)"/>
-                </g>
-                <g class="f-eyes"><g class="f-blink">
-                  <ellipse cx="124" cy="138" rx="6" ry="7.5" fill="#1c1512"/>
-                  <ellipse cx="176" cy="138" rx="6" ry="7.5" fill="#1c1512"/>
-                  <circle cx="126" cy="135" r="2" fill="#fff"/>
-                  <circle cx="178" cy="135" r="2" fill="#fff"/>
-                </g></g>
-                <path d="M150 146 Q145 159 149 163 Q153 164 157 161" stroke="#8a5a40" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-                <path d="M132 171 Q141 164 150 168 Q159 164 168 171 Q159 173 150 171.5 Q141 173 132 171 Z" fill="#1c1512"/>
-                <path class="f-mouth" d="M141 180 Q150 184 159 180" stroke="#5a3526" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-                <ellipse class="f-mouth-open" cx="150" cy="181" rx="7" ry="5" fill="#3d1d14"/>
-
-                <!-- cap + shades (click target) -->
-                <g class="f-cap">
-                  <path d="M84 106 Q80 44 150 38 Q220 44 216 106 Q150 94 84 106 Z" fill="#4a4e57"/>
-                  <path d="M150 40 V98" stroke="#3c4048" stroke-width="2"/>
-                  <path d="M116 50 Q106 74 104 102" stroke="#3c4048" stroke-width="1.5" fill="none"/>
-                  <path d="M184 50 Q194 74 196 102" stroke="#3c4048" stroke-width="1.5" fill="none"/>
-                  <circle cx="150" cy="40" r="4.5" fill="#3c4048"/>
-                  <path d="M80 106 Q150 88 220 106 Q224 118 212 120 Q150 106 88 120 Q76 118 80 106 Z" fill="#3a3d45"/>
-                  <path d="M92 120 Q150 110 208 120 Q150 127 92 120 Z" fill="#000" opacity=".2"/>
-                  <g class="f-shades">
-                    <rect x="104" y="66" width="40" height="22" rx="10" fill="url(#fMirror)" stroke="#101216" stroke-width="3"/>
-                    <rect x="156" y="66" width="40" height="22" rx="10" fill="url(#fMirror)" stroke="#101216" stroke-width="3"/>
-                    <path d="M144 74 Q150 70 156 74" stroke="#101216" stroke-width="3" fill="none"/>
-                    <path d="M112 72 L121 82 M164 72 L173 82" stroke="#fff" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>
-                  </g>
-                </g>
-              </g>
-
-              <!-- right arm (waves) -->
-              <g class="f-arm-r">
-                <path d="M196 228 Q212 252 208 284" stroke="#1d212a" stroke-width="22" stroke-linecap="round" fill="none"/>
-                <circle cx="208" cy="292" r="10" fill="url(#fSkin)"/>
-              </g>
-            </g>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= CONTACT ======================= -->
-<section class="contact" id="contact">
-  <div class="wrap">
-    <p class="kicker mono"><span>05</span>Contact</p>
-    <p class="mega reveal">Got an LLM project that's <em>not behaving?</em> <a href="#contact" data-email="paudelutsav3" data-domain="gmail.com">Email&nbsp;me.</a></p>
-
-    <div class="contact-grid reveal d1">
-      <div>
-        <span class="label mono">Email</span>
-        <a href="#contact" data-email="paudelutsav3" data-domain="gmail.com">paudelutsav3@gmail.com</a>
-      </div>
-      <div>
-        <span class="label mono">Phone</span>
-        <a href="tel:+9779861092858">+977 986-109-2858</a>
-      </div>
-      <div>
-        <span class="label mono">Elsewhere</span>
-        <a href="https://github.com/xafold" target="_blank" rel="noopener">GitHub ↗</a>
-        <a href="https://www.linkedin.com/in/utshabpaudell/" target="_blank" rel="noopener">LinkedIn ↗</a>
-      </div>
-      <div>
-        <a class="btn btn-solid" href="./assets/Utsav_Paudel_Resume.pdf" download>Download CV <span aria-hidden="true">↓</span></a>
-      </div>
-    </div>
+<!-- ======================= CONTACT: one field ======================= -->
+<section class="sec contact" id="contact" aria-labelledby="contact-h" data-src="Contact">
+  <div class="col" data-reveal>
+    <h2 id="contact-h" class="prompt"><span class="soft">Got an LLM that misbehaves?</span> <span>Tell me about it.</span></h2>
+    <form class="field" action="mailto:paudelutsav3@gmail.com" method="get">
+      <input type="hidden" name="subject" value="Project enquiry from utsavpaudel.me">
+      <label class="sr-only" for="msg">What are you building?</label>
+      <input id="msg" name="body" type="text" autocomplete="off" placeholder="What are you building?">
+      <button type="submit" aria-label="Write the email">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+      </button>
+    </form>
+    <p class="hint">This opens your email app with your message, addressed to me.</p>
+    <dl class="reach">
+      <div><dt>Email</dt><dd><a href="#contact" data-email="paudelutsav3" data-domain="gmail.com">paudelutsav3@gmail.com</a></dd></div>
+      <div><dt>Phone</dt><dd><a href="tel:+9779861092858">+977 986-109-2858</a></dd></div>
+      <div><dt>Based in</dt><dd>Koteshwor, Kathmandu, Nepal</dd></div>
+      <div><dt>Elsewhere</dt><dd><a href="https://github.com/xafold" target="_blank" rel="noopener">GitHub</a>, <a href="https://www.linkedin.com/in/utshabpaudell/" target="_blank" rel="noopener">LinkedIn</a>, <a href="./assets/Utsav_Paudel_Resume.pdf" download>CV (PDF)</a></dd></div>
+    </dl>
   </div>
 </section>
 
 </main>
 
 <footer class="foot">
-  <div class="wrap foot-faq" id="faq">
-    <p class="label mono">Quick facts</p>
-    <details><summary>Who is Utsav Paudel?</summary><p>Utsav Paudel is a Machine Learning Engineer and AI Engineer based in Kathmandu, Nepal. He has 2.5+ years of experience building Generative AI systems, RAG pipelines, LLM applications and Voice AI agents, mostly on AWS Bedrock. He works at Leapfrog Technology.</p></details>
-    <details><summary>Who is a Machine Learning Engineer or AI Engineer in Nepal?</summary><p>Utsav Paudel is a Machine Learning Engineer and AI Engineer in Kathmandu, Nepal. He builds production LLM systems for fintech and healthcare clients: RAG chatbots, text-to-SQL assistants, GraphRAG systems and voice agents. He is open to consulting and collaboration.</p></details>
-    <details><summary>What has Utsav Paudel built?</summary><p>A visa analytics RAG chatbot on AWS Bedrock and Claude Haiku 4.5. GoLend AI, a text-to-SQL assistant on Amazon Nova Pro and pgvector. A voice agent for patient calls on Amazon Nova Sonic and Twilio that cut scheduling time by 60%. Lender IQ, a GraphRAG system over 10,000+ financial documents. He also maintains two open-source Claude Code tools, cc-explain-this and jev-router.</p></details>
-    <details><summary>What is Utsav Paudel's tech stack?</summary><p>Python, PyTorch, LangChain, LangGraph, FastAPI, AWS Bedrock, AWS Lambda, Claude, Amazon Nova, GPT, Gemini, PostgreSQL with pgvector, and Neo4j.</p></details>
-    <details><summary>Where did Utsav Paudel study and work?</summary><p>He has a Bachelor in Computer Engineering from Kantipur Engineering College, Kathmandu (2017–2022). He worked at E.K. Solutions and Fusemachines before he joined Leapfrog Technology in May 2025.</p></details>
-    <details><summary>How can I contact or hire Utsav Paudel?</summary><p>Use the contact section on this page, or send a message on LinkedIn (linkedin.com/in/utshabpaudell). He is open to consulting and collaboration on LLM, RAG and voice AI projects.</p></details>
-  </div>
-  <div class="wrap foot-row mono">
-    <span><i class="live-dot"></i>© 2026 · Utsav Paudel · Kathmandu, Nepal</span>
-    <a href="#top">Back to top ↑</a>
-  </div>
+  <span>ML &amp; AI engineer, Kathmandu</span>
+  <nav aria-label="Elsewhere">
+    <a href="https://github.com/xafold" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/utshabpaudell/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="./llms.txt">llms.txt</a>
+  </nav>
+  <span class="foot-r">© 2026 Utsav Paudel</span>
 </footer>
 
 </body>
